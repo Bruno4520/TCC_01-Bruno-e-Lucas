@@ -1,0 +1,143 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Usuario {
+  id                  Int                  @id @default(autoincrement())
+  nome                String
+  email               String               @unique
+  senha               String
+  orcamentos          Orcamento[]
+  contas              Conta[]
+  cartoesCredito      CartaoCredito[]
+  categorias          Categoria[]
+  resultadosSimulacao Simulacao[]
+}
+
+model Conta {
+  id         Int         @id @default(autoincrement())
+  nome       String
+  saldo      Float
+  tipo       TipoConta
+  usuario    Usuario     @relation(fields: [usuarioId], references: [id])
+  usuarioId  Int
+  transacoes Transacao[]
+}
+
+enum TipoConta {
+  CARTEIRA
+  CONTA_CORRENTE
+  POUPANCA
+}
+
+model Categoria {
+  id         Int         @id @default(autoincrement())
+  nome       String      @unique
+  descricao  String?
+  usuario    Usuario     @relation(fields: [usuarioId], references: [id])
+  usuarioId  Int
+  orcamentos Orcamento[]
+  transacoes Transacao[]
+}
+
+model Orcamento {
+  id             Int       @id @default(autoincrement())
+  valorPlanejado Float
+  mes            Int
+  ano            Int
+  usuario        Usuario   @relation(fields: [usuarioId], references: [id])
+  usuarioId      Int
+  categoria      Categoria @relation(fields: [categoriaId], references: [id])
+  categoriaId    Int
+}
+
+model Transacao {
+  id              Int            @id @default(autoincrement())
+  descricao       String
+  valor           Float
+  data            DateTime       @default(now())
+  tipo            TipoTransacao
+  formaPagamento  FormaPagamento 
+  conta           Conta          @relation(fields: [contaId], references: [id])
+  contaId         Int
+  categoria       Categoria      @relation(fields: [categoriaId], references: [id])
+  categoriaId     Int
+  cartaoCredito   CartaoCredito? @relation(fields: [cartaoCreditoId], references: [id])
+  cartaoCreditoId Int?
+  parcelas        Parcela[]
+}
+
+enum TipoTransacao {
+  RECEITA
+  DESPESA
+}
+
+enum FormaPagamento {
+  DEBITO
+  CREDITO
+  PIX
+  DINHEIRO
+}
+
+model CartaoCredito {
+  id                  Int         @id @default(autoincrement())
+  nome                String
+  limite              Float
+  diaFechamentoFatura Int
+  diaVencimentoFatura Int
+  usuario             Usuario     @relation(fields: [usuarioId], references: [id])
+  usuarioId           Int
+  faturas             Fatura[]
+  transacoes          Transacao[]
+}
+
+model Fatura {
+  id              Int           @id @default(autoincrement())
+  mes             Int
+  ano             Int
+  valorTotal      Float
+  dataVencimento  DateTime
+  estaPaga        Boolean       @default(false)
+  cartaoCredito   CartaoCredito @relation(fields: [cartaoCreditoId], references: [id])
+  cartaoCreditoId Int
+  parcelas        Parcela[]
+}
+
+model Parcela {
+  id            Int       @id @default(autoincrement())
+  numeroParcela Int
+  valor         Float
+  transacao     Transacao @relation(fields: [transacaoId], references: [id])
+  transacaoId   Int
+  fatura        Fatura    @relation(fields: [faturaId], references: [id])
+  faturaId      Int
+
+  @@unique([transacaoId, numeroParcela])
+}
+
+model Simulacao {
+  id                Int      @id @default(autoincrement())
+  valorInicial      Float
+  aporteMensal      Float
+  taxa              Float
+  periodo           Int
+  dataSimulacao     DateTime @default(now())
+  valorFinalBruto   Float
+  valorFinalLiquido Float
+  totalInvestido    Float
+  valorImposto      Float
+  usuario           Usuario  @relation(fields: [usuarioId], references: [id])
+  usuarioId         Int
+}
