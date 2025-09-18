@@ -1,0 +1,4 @@
+npm init -y
+npm install @prisma/client
+npm install prisma typescript tsx @types/node --save-dev
+npx tsc --init
