@@ -6,6 +6,16 @@ npx tsc --init
 docker compose up -d
 npx prisma
 npx prisma init --datasource-provider postgresql
-npx prisma migrate dev --name init
 npx prisma generate
+npx prisma migrate dev --name init
 npx prisma studio
+
+npm install @prisma/client express
+npm install prisma --save-dev typescript tsx @types/node @types/express
+
+npm install argon2 jsonwebtoken
+npm install --save-dev @types/argon2 @types/jsonwebtoken
+
+docker compose up -d
+npm install
+npm run dev
