@@ -4,7 +4,7 @@ import { usuarioRoutes } from './routes/UsuarioRoutes.js';
 const app = express();
 app.use(express.json());
 
-app.use('/api/usuarios', usuarioRoutes); 
+app.use('/api/usuarios', usuarioRoutes);
 
 const PORT = 3000;
 app.listen(PORT, () => {

@@ -4,7 +4,7 @@ import argon2 from 'argon2';
 const prisma = new PrismaClient();
 
 export class UsuarioRepository {
-  
+
   async criar(dadosUsuario: any) {
 
     const senhaHash = await argon2.hash(dadosUsuario.senha);
@@ -29,6 +29,17 @@ export class UsuarioRepository {
     return prisma.usuario.findUnique({
       where: {
         email: email,
+      },
+    });
+  }
+
+  async buscarPorId(id: number) {
+    return prisma.usuario.findUnique({
+      where: { id },
+      select: {
+        id: true,
+        nome: true,
+        email: true,
       },
     });
   }
