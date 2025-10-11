@@ -1,21 +1,24 @@
 npm init -y
-npm install @prisma/client
-npm install prisma typescript tsx @types/node --save-dev
+
+npm install express @prisma/client argon2 jsonwebtoken
+npm install --save-dev prisma typescript tsx @types/node @types/express @types/argon2 @types/jsonwebtoken
+
 npx tsc --init
 
 docker compose up -d
-npx prisma
 npx prisma init --datasource-provider postgresql
-npx prisma generate
 npx prisma migrate dev --name init
+npx prisma generate
 npx prisma studio
 
-npm install @prisma/client express
-npm install prisma --save-dev typescript tsx @types/node @types/express
+npm run dev
 
-npm install argon2 jsonwebtoken
-npm install --save-dev @types/argon2 @types/jsonwebtoken
-
+1ª Vez:
 docker compose up -d
 npm install
+npx prisma migrate dev
+npm run dev
+
+Depois:
+docker compose up -d
 npm run dev
