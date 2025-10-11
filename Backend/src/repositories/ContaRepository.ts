@@ -1,4 +1,4 @@
-import { PrismaClient, type TipoConta } from '../../generated/prisma/index.js';
+import { PrismaClient, type TipoConta } from "../../generated/prisma/index.js";
 
 const prisma = new PrismaClient();
 
@@ -10,7 +10,6 @@ interface DadosCriarConta {
 }
 
 export class ContaRepository {
-
     async criar(dados: DadosCriarConta) {
         return prisma.conta.create({
             data: {
@@ -28,7 +27,16 @@ export class ContaRepository {
                 usuarioId: usuarioId,
             },
             orderBy: {
-                nome: 'asc',
+                nome: "asc",
+            },
+        });
+    }
+
+    async buscarPorIdEUsuarioId(id: number, usuarioId: number) {
+        return prisma.conta.findUnique({
+            where: {
+                id,
+                usuarioId,
             },
         });
     }

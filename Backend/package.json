@@ -9,9 +9,6 @@
     "dev": "tsx watch src/server.ts",
     "postinstall": "prisma generate"
   },
-  "prisma": {
-    "seed": "npx tsx src/seed.ts"
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
