@@ -3,6 +3,7 @@ import { usuarioRoutes } from './routes/UsuarioRoutes.js';
 import { contaRoutes } from './routes/ContaRoutes.js';
 import { categoriaRoutes } from './routes/CategoriaRoutes.js';
 import { transacaoRoutes } from './routes/TransacaoRoutes.js';
+import { cartaoCreditoRoutes } from './routes/CartaoCreditoRoutes.js';
 
 const app = express();
 app.use(express.json());
@@ -11,6 +12,7 @@ app.use('/api/usuarios', usuarioRoutes);
 app.use('/api/contas', contaRoutes);
 app.use('/api/categorias', categoriaRoutes);
 app.use('/api/transacoes', transacaoRoutes);
+app.use('/api/cartoes', cartaoCreditoRoutes);
 
 const PORT = 3000;
 app.listen(PORT, () => {
