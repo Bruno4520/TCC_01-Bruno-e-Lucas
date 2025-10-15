@@ -9,5 +9,7 @@ contaRoutes.use(authMiddleware);
 
 contaRoutes.post('/', contaController.criar);
 contaRoutes.get('/', contaController.listar);
+contaRoutes.put('/:id', contaController.atualizar);
+contaRoutes.delete('/:id', contaController.deletar);
 
 export { contaRoutes };

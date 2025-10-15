@@ -39,4 +39,40 @@ export class ContaController {
             return res.status(500).json({ mensagem: 'Erro interno do servidor.' });
         }
     }
+    async atualizar(req: Request, res: Response) {
+        try {
+            const { id } = req.params;
+            const { nome, saldo, tipo } = req.body;
+            const { id: usuarioId } = (req as any).user as JwtPayload;
+
+            const contaExistente = await contaRepository.buscarPorIdEUsuarioId(Number(id), usuarioId);
+            if (!contaExistente) {
+                return res.status(404).json({ mensagem: 'Conta inválida.' });
+            }
+
+            const contaAtualizada = await contaRepository.atualizar(Number(id), { nome, saldo, tipo });
+            return res.status(200).json(contaAtualizada);
+        } catch (error) {
+            console.error("ERRO AO ATUALIZAR CONTA:", error);
+            return res.status(500).json({ mensagem: 'Erro interno do servidor.' });
+        }
+    }
+
+    async deletar(req: Request, res: Response) {
+        try {
+            const { id } = req.params;
+            const { id: usuarioId } = (req as any).user as JwtPayload;
+
+            const contaExistente = await contaRepository.buscarPorIdEUsuarioId(Number(id), usuarioId);
+            if (!contaExistente) {
+                return res.status(404).json({ mensagem: 'Conta inválida.' });
+            }
+
+            await contaRepository.deletar(Number(id));
+            return res.status(204).send();
+        } catch (error) {
+            console.error("ERRO AO DELETAR CONTA:", error);
+            return res.status(500).json({ mensagem: 'Erro interno do servidor.' });
+        }
+    }
 }

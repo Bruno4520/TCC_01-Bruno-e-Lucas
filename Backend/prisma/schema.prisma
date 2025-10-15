@@ -31,7 +31,7 @@ model Conta {
   nome       String
   saldo      Float
   tipo       TipoConta
-  usuario    Usuario     @relation(fields: [usuarioId], references: [id])
+  usuario    Usuario     @relation(fields: [usuarioId], references: [id], onDelete: Cascade)
   usuarioId  Int
   transacoes Transacao[]
 }
@@ -46,7 +46,7 @@ model Categoria {
   id         Int         @id @default(autoincrement())
   nome       String      @unique
   descricao  String?
-  usuario    Usuario     @relation(fields: [usuarioId], references: [id])
+  usuario    Usuario     @relation(fields: [usuarioId], references: [id], onDelete: Cascade)
   usuarioId  Int
   orcamentos Orcamento[]
   transacoes Transacao[]
@@ -57,7 +57,7 @@ model Orcamento {
   valorPlanejado Float
   mes            Int
   ano            Int
-  usuario        Usuario   @relation(fields: [usuarioId], references: [id])
+  usuario        Usuario   @relation(fields: [usuarioId], references: [id], onDelete: Cascade)
   usuarioId      Int
   categoria      Categoria @relation(fields: [categoriaId], references: [id])
   categoriaId    Int
@@ -72,11 +72,11 @@ model Transacao {
   data            DateTime       @default(now())
   tipo            TipoTransacao
   formaPagamento  FormaPagamento 
-  conta           Conta          @relation(fields: [contaId], references: [id])
+  conta           Conta          @relation(fields: [contaId], references: [id], onDelete: Cascade)
   contaId         Int
   categoria       Categoria      @relation(fields: [categoriaId], references: [id])
   categoriaId     Int
-  cartaoCredito   CartaoCredito? @relation(fields: [cartaoCreditoId], references: [id])
+  cartaoCredito   CartaoCredito? @relation(fields: [cartaoCreditoId], references: [id], onDelete: Cascade)
   cartaoCreditoId Int?
   parcelas        Parcela[]
 }
@@ -99,7 +99,7 @@ model CartaoCredito {
   limite              Float
   diaFechamentoFatura Int
   diaVencimentoFatura Int
-  usuario             Usuario     @relation(fields: [usuarioId], references: [id])
+  usuario             Usuario     @relation(fields: [usuarioId], references: [id], onDelete: Cascade)
   usuarioId           Int
   faturas             Fatura[]
   transacoes          Transacao[]
@@ -112,7 +112,7 @@ model Fatura {
   valorTotal      Float
   dataVencimento  DateTime
   estaPaga        Boolean       @default(false)
-  cartaoCredito   CartaoCredito @relation(fields: [cartaoCreditoId], references: [id])
+  cartaoCredito   CartaoCredito @relation(fields: [cartaoCreditoId], references: [id], onDelete: Cascade)
   cartaoCreditoId Int
   parcelas        Parcela[]
 
@@ -123,9 +123,9 @@ model Parcela {
   id            Int       @id @default(autoincrement())
   numeroParcela Int
   valor         Float
-  transacao     Transacao @relation(fields: [transacaoId], references: [id])
+  transacao     Transacao @relation(fields: [transacaoId], references: [id], onDelete: Cascade)
   transacaoId   Int
-  fatura        Fatura    @relation(fields: [faturaId], references: [id])
+  fatura        Fatura    @relation(fields: [faturaId], references: [id], onDelete: Cascade)
   faturaId      Int
 
   @@unique([transacaoId, numeroParcela])
@@ -142,6 +142,6 @@ model Simulacao {
   valorFinalLiquido Float
   totalInvestido    Float
   valorImposto      Float
-  usuario           Usuario  @relation(fields: [usuarioId], references: [id])
+  usuario           Usuario  @relation(fields: [usuarioId], references: [id], onDelete: Cascade)
   usuarioId         Int
 }

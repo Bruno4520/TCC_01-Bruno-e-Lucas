@@ -9,6 +9,12 @@ interface DadosCriarConta {
     usuarioId: number;
 }
 
+interface DadosAtualizarConta {
+    nome?: string;
+    saldo?: number;
+    tipo?: TipoConta;
+}
+
 export class ContaRepository {
     async criar(dados: DadosCriarConta) {
         return prisma.conta.create({
@@ -38,6 +44,19 @@ export class ContaRepository {
                 id,
                 usuarioId,
             },
+        });
+    }
+
+    async atualizar(id: number, dados: DadosAtualizarConta) {
+        return prisma.conta.update({
+            where: { id },
+            data: dados,
+        });
+    }
+
+    async deletar(id: number) {
+        return prisma.conta.delete({
+            where: { id },
         });
     }
 }
