@@ -136,15 +136,17 @@ model Parcela {
 
 model Simulacao {
   id                Int      @id @default(autoincrement())
+  nome              String
   valorInicial      Float
   aporteMensal      Float
-  taxa              Float
-  periodo           Int
+  taxaMensal        Float
+  periodoMensal     Int
   dataSimulacao     DateTime @default(now())
   valorFinalBruto   Float
+  valorImposto      Float
   valorFinalLiquido Float
   totalInvestido    Float
-  valorImposto      Float
+  ganhoLiquido      Float
   usuario           Usuario  @relation(fields: [usuarioId], references: [id], onDelete: Cascade)
   usuarioId         Int
 }

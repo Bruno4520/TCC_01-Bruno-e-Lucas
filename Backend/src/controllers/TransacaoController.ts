@@ -102,9 +102,11 @@ export class TransacaoController {
                 await transacaoRepository.deletarCredito(transacao.id);
 
             } else {
-                const conta = await contaRepository.buscarPorIdEUsuarioId(transacao.contaId, usuarioId);
-                if (!conta) {
-                    return res.status(403).json({ mensagem: 'Conta não encontrada.' });
+                if (transacao.contaId) {
+                    const conta = await contaRepository.buscarPorIdEUsuarioId(transacao.contaId, usuarioId);
+                    if (!conta) {
+                        return res.status(403).json({ mensagem: 'Conta não encontrada.' });
+                    }
                 }
 
                 await transacaoRepository.deletar(transacao);
