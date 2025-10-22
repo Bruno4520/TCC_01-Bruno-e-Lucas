@@ -3,26 +3,44 @@ import argon2 from 'argon2';
 
 const prisma = new PrismaClient();
 
+const CATEGORIAS_BASICAS = [
+  { nome: 'Moradia', descricao: 'Despesas com aluguel, condomínio, etc.', sistema: false },
+  { nome: 'Alimentação', descricao: 'Compras de supermercado, restaurantes, delivery.', sistema: false },
+  { nome: 'Transporte', descricao: 'Combustível, transporte público, Uber.', sistema: false },
+  { nome: 'Salário', descricao: 'Recebimento de salário ou pagamento.', sistema: false },
+  { nome: 'PAGAMENTO DE FATURA', descricao: 'Pagamento de fatura do cartão.', sistema: true }
+];
+
 export class UsuarioRepository {
 
   async criar(dadosUsuario: any) {
 
     const senhaHash = await argon2.hash(dadosUsuario.senha);
+    return prisma.$transaction(async (tx) => {
+      const novoUsuario = await prisma.usuario.create({
+        data: {
+          nome: dadosUsuario.nome,
+          email: dadosUsuario.email,
+          senha: senhaHash,
+        },
+        select: {
+          id: true,
+          nome: true,
+          email: true,
+        }
+      });
 
-    const novoUsuario = await prisma.usuario.create({
-      data: {
-        nome: dadosUsuario.nome,
-        email: dadosUsuario.email,
-        senha: senhaHash,
-      },
-      select: {
-        id: true,
-        nome: true,
-        email: true,
-      }
+      const categoriasBasicas = CATEGORIAS_BASICAS.map(categoria => ({
+        ...categoria,
+        usuarioId: novoUsuario.id,
+      }));
+
+      await tx.categoria.createMany({
+        data: categoriasBasicas,
+      });
+
+      return novoUsuario;
     });
-
-    return novoUsuario;
   }
 
   async buscarPorEmail(email: string) {

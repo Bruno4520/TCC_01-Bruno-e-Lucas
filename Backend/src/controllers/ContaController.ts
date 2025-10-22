@@ -47,7 +47,7 @@ export class ContaController {
 
             const contaExistente = await contaRepository.buscarPorIdEUsuarioId(Number(id), usuarioId);
             if (!contaExistente) {
-                return res.status(404).json({ mensagem: 'Conta inválida.' });
+                return res.status(404).json({ mensagem: 'Conta não encontrada.' });
             }
 
             const contaAtualizada = await contaRepository.atualizar(Number(id), { nome, saldo, tipo });
@@ -65,7 +65,7 @@ export class ContaController {
 
             const contaExistente = await contaRepository.buscarPorIdEUsuarioId(Number(id), usuarioId);
             if (!contaExistente) {
-                return res.status(404).json({ mensagem: 'Conta inválida.' });
+                return res.status(404).json({ mensagem: 'Conta não encontrada.' });
             }
 
             await contaRepository.deletar(Number(id));

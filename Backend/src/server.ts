@@ -5,6 +5,7 @@ import { categoriaRoutes } from './routes/CategoriaRoutes.js';
 import { transacaoRoutes } from './routes/TransacaoRoutes.js';
 import { cartaoCreditoRoutes } from './routes/CartaoCreditoRoutes.js';
 import { orcamentoRoutes } from './routes/OrcamentoRoutes.js';
+import { faturaRoutes } from './routes/FaturaRoutes.js';
 
 const app = express();
 app.use(express.json());
@@ -15,6 +16,7 @@ app.use('/api/categorias', categoriaRoutes);
 app.use('/api/transacoes', transacaoRoutes);
 app.use('/api/cartoes', cartaoCreditoRoutes);
 app.use('/api/orcamentos', orcamentoRoutes);
+app.use('/api/faturas', faturaRoutes);
 
 const PORT = 3000;
 app.listen(PORT, () => {

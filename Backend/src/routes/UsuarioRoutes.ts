@@ -7,7 +7,6 @@ const usuarioController = new UsuarioController();
 
 usuarioRoutes.post('/', usuarioController.criar);
 usuarioRoutes.post('/login', usuarioController.login);
-
 usuarioRoutes.get('/perfil', authMiddleware, usuarioController.buscarPerfil);
 
 export { usuarioRoutes };

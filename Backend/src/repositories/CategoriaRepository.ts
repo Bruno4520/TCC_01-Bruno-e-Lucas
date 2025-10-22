@@ -45,6 +45,12 @@ export class CategoriaRepository {
         });
     }
 
+    async buscarCategoriaFatura(usuarioId: number) {
+        return prisma.categoria.findFirst({
+            where: { nome: 'PAGAMENTO DE FATURA', usuarioId, sistema: true }
+        });
+    }
+
     async atualizar(id: number, dados: DadosAtualizarCategoria) {
         return prisma.categoria.update({
             where: {
@@ -60,5 +66,13 @@ export class CategoriaRepository {
                 id
             },
         });
+    }
+
+    async temOrcamentos(categoriaId: number): Promise<boolean> {
+        const orcamento = await prisma.orcamento.findFirst({
+            where: { categoriaId: categoriaId },
+            select: { id: true }
+        });
+        return !!orcamento;
     }
 }

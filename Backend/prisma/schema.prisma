@@ -44,20 +44,23 @@ enum TipoConta {
 
 model Categoria {
   id         Int         @id @default(autoincrement())
-  nome       String      @unique
+  nome       String
   descricao  String?
+  sistema    Boolean     @default(false)
   usuario    Usuario     @relation(fields: [usuarioId], references: [id], onDelete: Cascade)
   usuarioId  Int
   orcamentos Orcamento[]
   transacoes Transacao[]
+
+  @@unique([nome, usuarioId])
 }
 
 model Orcamento {
-  id             Int       @id @default(autoincrement())
+  id             Int        @id @default(autoincrement())
   valorPlanejado Float
   mes            Int
   ano            Int
-  usuario        Usuario   @relation(fields: [usuarioId], references: [id], onDelete: Cascade)
+  usuario        Usuario    @relation(fields: [usuarioId], references: [id], onDelete: Cascade)
   usuarioId      Int
   categoria      Categoria @relation(fields: [categoriaId], references: [id])
   categoriaId    Int
@@ -72,10 +75,10 @@ model Transacao {
   data            DateTime       @default(now())
   tipo            TipoTransacao
   formaPagamento  FormaPagamento 
-  conta           Conta          @relation(fields: [contaId], references: [id], onDelete: Cascade)
-  contaId         Int
-  categoria       Categoria      @relation(fields: [categoriaId], references: [id])
-  categoriaId     Int
+  conta           Conta?         @relation(fields: [contaId], references: [id], onDelete: Cascade)
+  contaId         Int?
+  categoria       Categoria?     @relation(fields: [categoriaId], references: [id], onDelete: SetNull)
+  categoriaId     Int?
   cartaoCredito   CartaoCredito? @relation(fields: [cartaoCreditoId], references: [id], onDelete: Cascade)
   cartaoCreditoId Int?
   parcelas        Parcela[]

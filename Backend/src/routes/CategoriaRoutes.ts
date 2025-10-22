@@ -6,7 +6,6 @@ const categoriaRoutes = Router();
 const categoriaController = new CategoriaController();
 
 categoriaRoutes.use(authMiddleware);
-
 categoriaRoutes.post('/', categoriaController.criar);
 categoriaRoutes.get('/', categoriaController.listar);
 categoriaRoutes.put('/:id', categoriaController.atualizar);
