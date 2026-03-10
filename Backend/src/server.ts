@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 import { usuarioRoutes } from './routes/UsuarioRoutes.js';
 import { contaRoutes } from './routes/ContaRoutes.js';
 import { categoriaRoutes } from './routes/CategoriaRoutes.js';
@@ -9,6 +10,10 @@ import { faturaRoutes } from './routes/FaturaRoutes.js';
 import { simulacaoRoutes } from './routes/SimulacaoRoutes.js';
 
 const app = express();
+app.use(cors({
+  origin: ['http://localhost:5173', 'http://localhost:3000'],
+  credentials: true
+}));
 app.use(express.json());
 
 app.use('/api/usuarios', usuarioRoutes);
