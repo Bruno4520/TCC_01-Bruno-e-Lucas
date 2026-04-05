@@ -2,8 +2,7 @@ import {
   Lightbulb,
   TrendingUp,
   PiggyBank,
-  Calendar,
-  DollarSign,
+  Calendar
 } from "lucide-react";
 
 export function QuickTipsCard() {

@@ -5,10 +5,7 @@ interface RecentTransactionsProps {
   onViewAll: () => void;
 }
 
-export function RecentTransactions({
-  onAddTransaction,
-  onViewAll,
-}: RecentTransactionsProps) {
+export function RecentTransactions({ onViewAll }: RecentTransactionsProps) {
   return (
     <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
       <div className="flex items-center justify-between mb-6">
