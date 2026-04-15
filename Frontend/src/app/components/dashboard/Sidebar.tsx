@@ -7,6 +7,7 @@ import {
   Target,
   BarChart3,
   Calculator,
+  Settings,
 } from "lucide-react";
 import { Link, useLocation } from "react-router";
 
