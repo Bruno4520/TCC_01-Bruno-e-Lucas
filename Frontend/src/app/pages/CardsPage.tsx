@@ -9,6 +9,8 @@ import {
   type Purchase,
 } from "../components/cards/RecentPurchases";
 import { Plus } from "lucide-react";
+import { NewCardModal, type CardData } from "../components/cards/NewCardModal";
+import { NewTransactionModal } from "../components/transactions/NewTransactionModal";
 
 const creditCards = [
   {
@@ -87,16 +89,27 @@ const mockPurchases: Purchase[] = [
 
 export function CardsPage() {
   const [selectedCardId, setSelectedCardId] = useState("1");
+  const [isCardModalOpen, setIsCardModalOpen] = useState(false);
+  const [isTransactionModalOpen, setIsTransactionModalOpen] = useState(false);
 
   const selectedCard =
     creditCards.find((card) => card.id === selectedCardId) || creditCards[0];
 
   const handleNewPurchase = () => {
-    console.log("Nova compra");
+    setIsTransactionModalOpen(true);
   };
 
   const handleNewCard = () => {
-    console.log("Novo Cartão");
+    setIsCardModalOpen(true);
+  };
+
+  const handleSaveCard = (data: CardData) => {
+    console.log("Dados do novo cartão:", data);
+  };
+
+  const handleSaveTransaction = (data: any) => {
+    console.log("Nova compra no cartão:", data);
+    setIsTransactionModalOpen(false);
   };
 
   return (
@@ -162,6 +175,22 @@ export function CardsPage() {
         </main>
 
         <Footer />
+
+        {/* Modais */}
+        <NewCardModal
+          isOpen={isCardModalOpen}
+          onClose={() => setIsCardModalOpen(false)}
+          onSave={handleSaveCard}
+        />
+
+        <NewTransactionModal
+          isOpen={isTransactionModalOpen}
+          onClose={() => setIsTransactionModalOpen(false)}
+          onSave={handleSaveTransaction}
+          initialType="despesa"
+          initialAccount={selectedCard.label} // Passa o nome do cartão atual
+          initialPaymentMethod="cartao" // Trava como cartão
+        />
       </div>
     </div>
   );

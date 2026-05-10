@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Plus } from "lucide-react";
 import { Sidebar } from "../components/dashboard/Sidebar";
 import { Header } from "../components/dashboard/Header";
@@ -7,6 +8,7 @@ import {
   TransactionTable,
   type Transaction,
 } from "../components/transactions/TransactionTable";
+import { NewTransactionModal } from "../components/transactions/NewTransactionModal";
 
 // Mock data
 const mockTransactions: Transaction[] = [
@@ -79,12 +81,20 @@ const mockTransactions: Transaction[] = [
 ];
 
 export function TransactionsPage() {
+  // Estado para controlar a abertura do modal
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const handleFilter = () => {
     console.log("Aplicar filtros");
   };
 
   const handleAddTransaction = () => {
-    console.log("Adicionar Transacção");
+    setIsModalOpen(true);
+  };
+
+  const handleSaveTransaction = (data: any) => {
+    console.log("Nova transação salva:", data);
+    // Aqui você adicionará a lógica para atualizar a lista ou fazer o POST na API
   };
 
   const handleEdit = (id: string) => {
@@ -135,6 +145,13 @@ export function TransactionsPage() {
 
         <Footer />
       </div>
+
+      {/* Renderização do Modal */}
+      <NewTransactionModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onSave={handleSaveTransaction}
+      />
     </div>
   );
 }

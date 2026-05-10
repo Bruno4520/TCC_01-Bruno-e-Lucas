@@ -5,6 +5,9 @@ interface NewTransactionModal {
   isOpen: boolean;
   onClose: () => void;
   onSave?: (transaction: TransactionData) => void;
+  initialType?: "receita" | "despesa";
+  initialAccount?: string;
+  initialPaymentMethod?: string;
 }
 
 export interface TransactionData {
@@ -25,6 +28,9 @@ export function NewTransactionModal({
   isOpen,
   onClose,
   onSave,
+  initialType = "receita",
+  initialAccount = "",
+  initialPaymentMethod = "",
 }: NewTransactionModal) {
   const [type, setType] = useState<"receita" | "despesa">("receita");
   const [valor, setValor] = useState("");
@@ -40,6 +46,22 @@ export function NewTransactionModal({
   const [contaDestino, setContaDestino] = useState("");
   const [tipoCartao, setTipoCartao] = useState<"credito" | "debito">("debito");
   const [parcelas, setParcelas] = useState(1);
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+      setType(initialType);
+      if (initialAccount) setConta(initialAccount);
+      if (initialPaymentMethod) setFormaPagamento(initialPaymentMethod);
+      if (initialPaymentMethod === "cartao") setTipoCartao("credito");
+    } else {
+      document.body.style.overflow = "unset";
+    }
+
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isOpen, initialType, initialAccount, initialPaymentMethod]);
 
   // Mock data - substituir por dados reais da sua aplicação
   const contas = ["Conta Corrente", "Conta Poupança", "Carteira"];

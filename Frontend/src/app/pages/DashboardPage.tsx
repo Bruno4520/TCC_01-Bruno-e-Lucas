@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router";
 import { Wallet, TrendingUp, TrendingDown, CreditCard } from "lucide-react";
 import { Sidebar } from "../components/dashboard/Sidebar";
 import { Header } from "../components/dashboard/Header";
@@ -10,32 +11,43 @@ import { MonthlyOverview } from "../components/dashboard/MonthlyOverview";
 import { ExpensesByCategory } from "../components/dashboard/ExpensesByCategory";
 import { Footer } from "../components/dashboard/Footer";
 import { NewTransactionModal } from "../components/transactions/NewTransactionModal";
+import { NewBudgetModal } from "../components/budgets/NewBudgetModal";
 
 export function DashboardPage() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const [isTransactionModalOpen, setIsTransactionModalOpen] = useState(false);
+  const [isBudgetModalOpen, setIsBudgetModalOpen] = useState(false);
+  const [transactionType, setTransactionType] = useState<"receita" | "despesa">(
+    "receita",
+  );
 
   const handleAddTransaction = () => {
-    setIsModalOpen(true);
+    setTransactionType("receita");
+    setIsTransactionModalOpen(true);
   };
 
   const handleViewAllTransactions = () => {
-    console.log("Ver todas as transações");
+    navigate("/transacoes");
   };
 
   const handleNewIncome = () => {
-    console.log("Nova receita");
+    setTransactionType("receita");
+    setIsTransactionModalOpen(true);
   };
 
   const handleNewExpense = () => {
-    console.log("Nova despesa");
+    setTransactionType("despesa");
+    setIsTransactionModalOpen(true);
   };
 
   const handleTransfer = () => {
-    console.log("Transferência");
+    setTransactionType("despesa");
+    setIsTransactionModalOpen(true);
   };
 
   const handleCreateBudget = () => {
-    console.log("Criar orçamento");
+    setIsBudgetModalOpen(true);
   };
 
   return (
@@ -125,11 +137,24 @@ export function DashboardPage() {
         <Footer />
       </div>
 
-      {/* Modal */}
+      {/* Modais Roteados */}
       <NewTransactionModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        onSave={() => setIsModalOpen(false)}
+        isOpen={isTransactionModalOpen}
+        onClose={() => setIsTransactionModalOpen(false)}
+        initialType={transactionType}
+        onSave={(data) => {
+          console.log("Salvar transação:", data);
+          setIsTransactionModalOpen(false);
+        }}
+      />
+
+      <NewBudgetModal
+        isOpen={isBudgetModalOpen}
+        onClose={() => setIsBudgetModalOpen(false)}
+        onSave={(data) => {
+          console.log("Salvar orçamento:", data);
+          setIsBudgetModalOpen(false);
+        }}
       />
     </div>
   );

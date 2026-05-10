@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import { Plus } from "lucide-react";
 import { Sidebar } from "../components/dashboard/Sidebar";
 import { Header } from "../components/dashboard/Header";
@@ -7,6 +8,10 @@ import {
   AccountsTable,
   type Account,
 } from "../components/accounts/AccountsTable";
+import {
+  NewAccountModal,
+  type AccountData,
+} from "../components/accounts/NewAccountModal";
 
 // Mock data
 const summaryAccounts = [
@@ -83,8 +88,11 @@ const accountsList: Account[] = [
 ];
 
 export function AccountsPage() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const handleAddAccount = () => {
     console.log("Adicionar conta");
+    setIsModalOpen(true);
   };
 
   const handleEdit = (id: string) => {
@@ -93,6 +101,10 @@ export function AccountsPage() {
 
   const handleDelete = (id: string) => {
     console.log("Excluir conta:", id);
+  };
+
+  const handleSaveAccount = (data: AccountData) => {
+    console.log("Payload para enviar ao backend (Node.js/PostgreSQL):", data);
   };
 
   return (
@@ -141,9 +153,13 @@ export function AccountsPage() {
             />
           </div>
         </main>
-
         <Footer />
       </div>
+      <NewAccountModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onSave={handleSaveAccount}
+      />
     </div>
   );
 }

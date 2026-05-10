@@ -6,6 +6,10 @@ import { Footer } from "../components/dashboard/Footer";
 import { BudgetSummaryCard } from "../components/budgets/BudgetSummaryCard";
 import { BudgetCategoryCard } from "../components/budgets/BudgetCategoryCard";
 import { AddCategoryCard } from "../components/budgets/AddCategoryCard";
+import {
+  NewBudgetModal,
+  type BudgetData,
+} from "../components/budgets/NewBudgetModal";
 
 const budgetCategories = [
   {
@@ -62,6 +66,7 @@ const budgetCategories = [
 
 export function BudgetsPage() {
   const [selectedMonth, setSelectedMonth] = useState("Janeiro 2026");
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const totalPlanned = budgetCategories.reduce(
     (sum, cat) => sum + cat.planned,
@@ -71,7 +76,11 @@ export function BudgetsPage() {
   const available = totalPlanned - totalSpent;
 
   const handleAddBudget = () => {
-    console.log("Adicionar orçamento");
+    setIsModalOpen(true);
+  };
+
+  const handleSaveBudget = (data: BudgetData) => {
+    console.log("Novo orçamento criado:", data);
   };
 
   const handleAddCategory = () => {
@@ -146,6 +155,11 @@ export function BudgetsPage() {
         </main>
 
         <Footer />
+        <NewBudgetModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          onSave={handleSaveBudget}
+        />
       </div>
     </div>
   );
