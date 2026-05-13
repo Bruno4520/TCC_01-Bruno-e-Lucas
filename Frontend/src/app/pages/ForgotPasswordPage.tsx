@@ -16,7 +16,6 @@ export function ForgotPasswordPage() {
 
   return (
     <main className="relative flex min-h-screen bg-background transition-colors duration-300 items-center justify-center p-6 overflow-hidden">
-      {/* Decorative circles adaptados para funcionar bem com temas */}
       <div className="absolute top-20 left-20 w-32 h-32 bg-[#2B5BBA]/10 rounded-full blur-3xl"></div>
       <div className="absolute bottom-32 right-32 w-48 h-48 bg-purple-500/10 rounded-full blur-3xl"></div>
 

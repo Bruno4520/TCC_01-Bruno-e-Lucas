@@ -12,114 +12,61 @@ import {
 const invoices = [
   {
     id: "1",
-    month: "Janeiro",
+    month: "Junho",
     year: 2026,
-    status: "paid" as const,
-    dueDate: "15/02/2026",
-    totalAmount: 2847.9,
-    purchasesCount: 18,
+    status: "open" as const,
+    dueDate: "12/07/2026",
+    totalAmount: 1000.0,
+    purchasesCount: 3,
   },
   {
     id: "2",
-    month: "Fevereiro",
+    month: "Maio",
     year: 2026,
     status: "paid" as const,
-    dueDate: "15/03/2026",
-    totalAmount: 3125.45,
-    purchasesCount: 22,
+    dueDate: "12/06/2026",
+    totalAmount: 950.5,
+    purchasesCount: 12,
   },
   {
     id: "3",
-    month: "Março",
-    year: 2026,
-    status: "closed" as const,
-    dueDate: "15/04/2026",
-    totalAmount: 1956.78,
-    purchasesCount: 14,
-  },
-  {
-    id: "4",
     month: "Abril",
     year: 2026,
-    status: "open" as const,
-    dueDate: "15/05/2026",
-    totalAmount: 892.34,
-    purchasesCount: 8,
-  },
-  {
-    id: "5",
-    month: "Dezembro",
-    year: 2025,
     status: "paid" as const,
-    dueDate: "15/01/2026",
-    totalAmount: 4123.67,
-    purchasesCount: 31,
-  },
-  {
-    id: "6",
-    month: "Novembro",
-    year: 2025,
-    status: "paid" as const,
-    dueDate: "15/12/2025",
-    totalAmount: 2345.89,
-    purchasesCount: 19,
+    dueDate: "12/05/2026",
+    totalAmount: 1120.75,
+    purchasesCount: 15,
   },
 ];
 
+// Transações que somam exatamente R$ 1.000,00
 const invoiceItems: InvoiceItem[] = [
   {
     id: "1",
-    date: "02/01/2026",
+    date: "08/06/2026",
     description: "Supermercado Extra",
     category: "Alimentação",
     categoryColor: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400",
     installment: "À vista",
-    amount: 287.45,
+    amount: 450.9,
   },
   {
     id: "2",
-    date: "05/01/2026",
-    description: "Netflix",
-    category: "Entretenimento",
-    categoryColor: "bg-purple-500/10 text-purple-600 dark:text-purple-400",
+    date: "22/06/2026",
+    description: "iFood (Pizza)",
+    category: "Alimentação",
+    categoryColor: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400",
     installment: "À vista",
-    amount: 39.9,
+    amount: 89.2,
   },
   {
     id: "3",
-    date: "08/01/2026",
-    description: "Posto Shell",
-    category: "Combustível",
-    categoryColor: "bg-blue-500/10 text-blue-600 dark:text-blue-400",
-    installment: "À vista",
-    amount: 156.78,
-  },
-  {
-    id: "4",
-    date: "12/01/2026",
+    date: "25/06/2026",
     description: "Smartphone Samsung",
     category: "Eletrônicos",
     categoryColor: "bg-orange-500/10 text-orange-600 dark:text-orange-400",
-    installment: "3/12",
-    amount: 1299.99,
-  },
-  {
-    id: "5",
-    date: "15/01/2026",
-    description: "Farmácia São Paulo",
-    category: "Saúde",
-    categoryColor: "bg-red-500/10 text-red-600 dark:text-red-400",
-    installment: "À vista",
-    amount: 89.34,
-  },
-  {
-    id: "6",
-    date: "18/01/2026",
-    description: "Restaurante Outback",
-    category: "Restaurantes",
-    categoryColor: "bg-yellow-500/10 text-yellow-600 dark:text-yellow-400",
-    installment: "À vista",
-    amount: 234.67,
+    installment: "3/10",
+    amount: 459.9,
   },
 ];
 
@@ -141,7 +88,6 @@ export function InvoicesPage() {
         <Header userName="João Silva" userRole="Administrador" />
 
         <main className="flex-1 overflow-y-auto p-6 md:p-8">
-          {/* Cabeçalho da Página */}
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 gap-4">
             <div>
               <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">
@@ -160,7 +106,6 @@ export function InvoicesPage() {
             </button>
           </div>
 
-          {/* Grid de Faturas */}
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mb-8">
             {invoices.map((invoice) => (
               <InvoiceCard
@@ -177,7 +122,6 @@ export function InvoicesPage() {
             ))}
           </div>
 
-          {/* Tabela de Detalhes */}
           <div className="mb-8">
             <InvoiceTable
               month={selectedInvoice.month}

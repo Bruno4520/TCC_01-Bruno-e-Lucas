@@ -87,15 +87,12 @@ export function NewAccountModal({
       className="fixed inset-0 z-50 flex items-center justify-center p-4"
       onWheel={(e) => e.stopPropagation()}
     >
-      {/* Overlay */}
       <div
         className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity"
         onClick={handleClose}
       />
 
-      {/* Modal */}
       <div className="relative bg-card text-card-foreground rounded-3xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto border border-border/50 animate-in fade-in zoom-in-95 duration-200">
-        {/* Header */}
         <div className="sticky top-0 bg-card/80 backdrop-blur-md border-b border-border/50 px-8 py-5 flex items-center justify-between rounded-t-3xl z-10">
           <h2 className="text-xl font-bold tracking-tight">Nova Conta</h2>
           <button
@@ -107,7 +104,6 @@ export function NewAccountModal({
         </div>
 
         <form onSubmit={handleSubmit} className="p-8 space-y-6">
-          {/* Tipo de Conta */}
           <div>
             <label className="block text-sm font-medium text-foreground mb-3">
               Tipo de Conta
@@ -150,7 +146,6 @@ export function NewAccountModal({
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Nome */}
             <div>
               <label className="block text-sm font-medium text-foreground mb-2">
                 Nome da Conta
@@ -165,7 +160,6 @@ export function NewAccountModal({
               />
             </div>
 
-            {/* Saldo - Com a correção de cor fixa */}
             <div>
               <label className="block text-sm font-medium text-foreground mb-2">
                 Saldo Inicial
@@ -186,7 +180,6 @@ export function NewAccountModal({
             </div>
           </div>
 
-          {/* Dados Bancários Condicionais (Alinhados com o Prisma) */}
           {type !== "wallet" && (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-5 bg-muted/30 rounded-2xl border border-border/50">
               <div>
@@ -218,7 +211,6 @@ export function NewAccountModal({
             </div>
           )}
 
-          {/* Footer de Ações */}
           <div className="flex gap-4 pt-6 border-t border-border/50 mt-8">
             <button
               type="button"

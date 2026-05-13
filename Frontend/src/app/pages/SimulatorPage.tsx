@@ -13,9 +13,9 @@ import { TermsCard } from "../components/simulator/TermsCard";
 const CDI_MONTHLY_RATE = 1.0738;
 
 export function SimulatorPage() {
-  const [initialValue, setInitialValue] = useState("10000");
-  const [monthlyContribution, setMonthlyContribution] = useState("500");
-  const [period, setPeriod] = useState("24");
+  const [initialValue, setInitialValue] = useState("0,00");
+  const [monthlyContribution, setMonthlyContribution] = useState("0,00");
+  const [period, setPeriod] = useState("0");
   const [rateType, setRateType] = useState("cdi");
   const [cdiPercentage, setCdiPercentage] = useState(100);
   const [considerTax, setConsiderTax] = useState(true);
@@ -30,8 +30,6 @@ export function SimulatorPage() {
     netReturn: 0,
   });
 
-  const parseNumber = (value: string): number => parseFloat(value) || 0;
-
   const getTaxRate = (months: number): number => {
     if (months <= 6) return 0.225;
     if (months <= 12) return 0.2;
@@ -40,8 +38,10 @@ export function SimulatorPage() {
   };
 
   const calculateInvestment = () => {
-    const initial = parseNumber(initialValue);
-    const monthly = parseNumber(monthlyContribution);
+    const initial = Number(initialValue.replace(/\./g, "").replace(",", "."));
+    const monthly = Number(
+      monthlyContribution.replace(/\./g, "").replace(",", "."),
+    );
     const months = parseInt(period) || 0;
 
     const monthlyRate = (CDI_MONTHLY_RATE * cdiPercentage) / 100 / 100;

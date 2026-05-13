@@ -28,7 +28,6 @@ export function SummaryCard({
   return (
     <div className="bg-card text-card-foreground rounded-2xl p-6 border border-border/50 shadow-sm transition-colors duration-300">
       <div className="flex items-start justify-between mb-4">
-        {/* O fundo recebe as classes dinâmicas, idealmente com opacidade (ex: bg-blue-500/10) */}
         <div
           className={`w-12 h-12 ${iconBgColor} rounded-xl flex items-center justify-center`}
         >

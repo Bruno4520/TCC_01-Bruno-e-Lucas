@@ -148,7 +148,6 @@ export function RecentPurchases({
                 </div>
               </div>
 
-              {/* Valores originais ficam opacos ao passar o mouse para mostrar as ações */}
               <div className="text-right group-hover:opacity-0 transition-opacity absolute right-4">
                 <p className="text-sm font-bold tracking-tight text-foreground">
                   -{formatCurrency(purchase.amount)}
@@ -158,7 +157,6 @@ export function RecentPurchases({
                 </p>
               </div>
 
-              {/* Ações (Editar/Excluir) aparecem ao passar o mouse */}
               <div className="flex items-center justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity absolute right-4">
                 <button
                   onClick={() => onEditPurchase(purchase.id)}

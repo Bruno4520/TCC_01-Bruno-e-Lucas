@@ -22,7 +22,6 @@ export function ForgotPasswordCard({
   if (isSubmitted) {
     return (
       <div className="w-full max-w-md bg-card text-card-foreground rounded-3xl shadow-xl border border-border/50 overflow-hidden transition-colors duration-300">
-        {/* Success Header */}
         <div className="bg-linear-to-br from-[#2B5BBA] to-[#4C7FEE] px-12 py-16 flex items-center justify-center relative overflow-hidden">
           <div className="absolute top-8 right-12 w-3 h-3 bg-yellow-400 rounded-full"></div>
           <div className="absolute bottom-16 left-8 w-2 h-2 bg-red-400 rounded-full"></div>
@@ -37,7 +36,6 @@ export function ForgotPasswordCard({
           </div>
         </div>
 
-        {/* Success Content */}
         <div className="px-12 py-10">
           <h2 className="text-2xl font-semibold text-center mb-4">
             E-mail enviado!
@@ -61,14 +59,11 @@ export function ForgotPasswordCard({
 
   return (
     <div className="w-full max-w-md bg-card text-card-foreground rounded-3xl shadow-xl border border-border/50 overflow-hidden transition-colors duration-300">
-      {/* Header with illustration */}
       <div className="bg-linear-to-br from-[#2B5BBA] to-[#4C7FEE] px-12 py-16 flex items-center justify-center relative overflow-hidden">
-        {/* Decorative elements */}
         <div className="absolute top-8 right-12 w-3 h-3 bg-yellow-400 rounded-full"></div>
         <div className="absolute bottom-16 left-8 w-2 h-2 bg-red-400 rounded-full"></div>
         <div className="absolute top-12 left-16 w-2 h-2 bg-purple-300 rounded-full"></div>
 
-        {/* Key illustration */}
         <div className="relative">
           <div className="w-24 h-24 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
             <div className="w-16 h-16 bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center">
@@ -92,7 +87,6 @@ export function ForgotPasswordCard({
         </div>
       </div>
 
-      {/* Form Content */}
       <div className="px-12 py-10">
         <h2 className="text-2xl font-semibold text-center mb-4">
           Recuperar senha

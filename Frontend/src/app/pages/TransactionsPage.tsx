@@ -136,7 +136,6 @@ export function TransactionsPage() {
         <Header userName="João Silva" userRole="Administrador" />
 
         <main className="flex-1 overflow-y-auto p-6 md:p-8">
-          {/* Cabeçalho da Página */}
           <div className="mb-8">
             <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">
               Transações
@@ -146,10 +145,8 @@ export function TransactionsPage() {
             </p>
           </div>
 
-          {/* Filtros */}
           <TransactionFilters onFilter={handleFilter} />
 
-          {/* Botões de Ação */}
           <div className="flex gap-4 mb-6">
             <button
               onClick={handleAddTransaction}
@@ -160,7 +157,6 @@ export function TransactionsPage() {
             </button>
           </div>
 
-          {/* Tabela de Transações */}
           <TransactionTable
             transactions={mockTransactions}
             onEdit={handleEdit}

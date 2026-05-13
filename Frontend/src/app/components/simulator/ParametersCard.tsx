@@ -31,6 +31,15 @@ export function ParametersCard({
   setConsiderTax,
   onCalculate,
 }: ParametersCardProps) {
+  const formatCurrency = (value: string) => {
+    const digits = value.replace(/\D/g, "");
+    const amount = Number(digits) / 100;
+    return new Intl.NumberFormat("pt-BR", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    }).format(amount);
+  };
+
   return (
     <div className="bg-card rounded-3xl p-6 shadow-sm border border-border/50 transition-colors duration-300">
       <div className="flex items-center gap-3 mb-6">
@@ -51,10 +60,8 @@ export function ParametersCard({
             <input
               type="text"
               value={initialValue}
-              onChange={(e) =>
-                setInitialValue(e.target.value.replace(/\D/g, ""))
-              }
-              placeholder="10.000,00"
+              onChange={(e) => setInitialValue(formatCurrency(e.target.value))}
+              placeholder="0,00"
               className="w-full px-4 py-3.5 bg-muted/50 border border-transparent rounded-xl text-foreground focus:outline-none focus:ring-2 focus:ring-[#2B5BBA] transition-all font-medium"
             />
           </div>
@@ -66,9 +73,9 @@ export function ParametersCard({
               type="text"
               value={monthlyContribution}
               onChange={(e) =>
-                setMonthlyContribution(e.target.value.replace(/\D/g, ""))
+                setMonthlyContribution(formatCurrency(e.target.value))
               }
-              placeholder="500,00"
+              placeholder="0,00"
               className="w-full px-4 py-3.5 bg-muted/50 border border-transparent rounded-xl text-foreground focus:outline-none focus:ring-2 focus:ring-[#2B5BBA] transition-all font-medium"
             />
           </div>
@@ -83,7 +90,7 @@ export function ParametersCard({
               type="text"
               value={period}
               onChange={(e) => setPeriod(e.target.value.replace(/\D/g, ""))}
-              placeholder="24"
+              placeholder="0"
               className="w-full px-4 py-3.5 bg-muted/50 border border-transparent rounded-xl text-foreground focus:outline-none focus:ring-2 focus:ring-[#2B5BBA] transition-all font-medium"
             />
           </div>

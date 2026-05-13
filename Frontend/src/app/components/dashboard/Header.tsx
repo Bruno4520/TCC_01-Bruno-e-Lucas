@@ -48,7 +48,6 @@ export function Header({
 
   return (
     <header className="bg-card border-b border-border px-8 py-4 flex items-center justify-between transition-colors duration-300 relative z-40">
-      {/* Search Bar */}
       <div className="flex-1 max-w-md">
         <div className="relative">
           <Search
@@ -63,15 +62,12 @@ export function Header({
         </div>
       </div>
 
-      {/* Right Section */}
       <div className="flex items-center gap-5">
-        {/* Notifications */}
         <button className="relative p-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded-full transition-colors">
           <Bell size={20} />
           <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full border-2 border-card"></span>
         </button>
 
-        {/* User Info & Dropdown */}
         <div className="relative" ref={dropdownRef}>
           <button
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
@@ -94,10 +90,8 @@ export function Header({
             />
           </button>
 
-          {/* Dropdown Menu */}
           {isDropdownOpen && (
             <div className="absolute right-0 mt-4 w-56 bg-card border border-border/50 rounded-2xl shadow-xl py-2 animate-in fade-in slide-in-from-top-2 duration-200">
-              {/* Mostra info do usuário no mobile dentro do menu */}
               <div className="px-4 py-3 border-b border-border/50 mb-2 lg:hidden">
                 <p className="text-sm font-bold text-foreground">{userName}</p>
                 <p className="text-xs text-muted-foreground font-medium">
@@ -105,7 +99,6 @@ export function Header({
                 </p>
               </div>
 
-              {/* Opções */}
               <a
                 href="/configuracoes"
                 className="w-full flex items-center gap-3 px-4 py-2.5 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"

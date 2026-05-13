@@ -81,7 +81,6 @@ export function InvoiceTable({ month, year, items }: InvoiceTableProps) {
               </tr>
             ))}
 
-            {/* Linha Opcional para mostrar que não há mais itens (Empty state em caso de fatura zerada) */}
             {items.length === 0 && (
               <tr>
                 <td

@@ -94,7 +94,6 @@ export function BudgetCategoryCard({
 
   return (
     <div className="bg-card rounded-3xl p-6 shadow-sm border border-border/50 transition-all duration-300 hover:shadow-md group relative">
-      {/* AÇÕES DA CATEGORIA */}
       <div className="absolute top-4 right-4 flex items-center gap-1 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity">
         <button
           onClick={() => onEditCategory(categoryId)}
@@ -115,7 +114,6 @@ export function BudgetCategoryCard({
       </div>
 
       <div className="flex items-center gap-4 mb-6 pr-12">
-        {/* Aqui aplicamos as cores de fundo translúcido (bg) e o ícone com a cor (text) */}
         <div
           className={`w-12 h-12 ${safeColor.bg} rounded-xl flex items-center justify-center`}
         >

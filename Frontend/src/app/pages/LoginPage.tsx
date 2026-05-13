@@ -27,7 +27,6 @@ export function LoginPage() {
 
   return (
     <main className="flex min-h-screen bg-background transition-colors duration-300">
-      {/* Seção do Formulário de Login */}
       <section className="flex items-center justify-center w-full lg:w-1/2 p-6 sm:p-12">
         <LoginCard
           onLogin={handleLogin}

@@ -61,7 +61,6 @@ export function Sidebar() {
 
   return (
     <aside className="w-64 bg-card border-r border-border min-h-screen flex flex-col shrink-0 transition-colors duration-300">
-      {/* Logo */}
       <div className="p-6 flex items-center gap-3 mb-2">
         <div className="w-10 h-10 bg-[#2B5BBA] rounded-xl flex items-center justify-center shadow-lg">
           <svg
@@ -91,7 +90,6 @@ export function Sidebar() {
         </h1>
       </div>
 
-      {/* Menu Items */}
       <nav className="flex-1 px-4 space-y-1 overflow-y-auto">
         {menuItems.map((item) => (
           <SidebarItem

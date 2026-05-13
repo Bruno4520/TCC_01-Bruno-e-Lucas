@@ -4,8 +4,8 @@ export function TaxTableCard() {
   const taxBrackets = [
     { period: "Até 180 dias", rate: "22,5%", isActive: false },
     { period: "181 a 360 dias", rate: "20,0%", isActive: false },
-    { period: "361 a 720 dias (até 2 anos)", rate: "17,5%", isActive: true },
-    { period: "Acima de 720 dias", rate: "15,0%", isActive: false },
+    { period: "361 a 720 dias (até 2 anos)", rate: "17,5%", isActive: false },
+    { period: "Acima de 720 dias", rate: "15,0%", isActive: true },
   ];
 
   return (

@@ -111,14 +111,12 @@ export function CardsPage() {
         <Footer />
       </div>
 
-      {/* Modal de Novo Cartão */}
       <NewCardModal
         isOpen={isNewCardModalOpen}
         onClose={() => setIsNewCardModalOpen(false)}
         onSave={(data) => console.log("Salvar Cartão (Prisma):", data)}
       />
 
-      {/* Modal de Nova Transação */}
       <NewTransactionModal
         isOpen={isTransactionModalOpen}
         onClose={() => setIsTransactionModalOpen(false)}

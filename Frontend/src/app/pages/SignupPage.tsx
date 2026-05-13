@@ -32,7 +32,6 @@ export function SignupPage() {
 
   return (
     <main className="flex min-h-screen bg-background transition-colors duration-300">
-      {/* Signup Section */}
       <section className="flex items-center justify-center w-full lg:w-1/2 p-6 lg:p-12">
         <SignupCard
           onSignup={handleSignup}
@@ -42,7 +41,6 @@ export function SignupPage() {
         />
       </section>
 
-      {/* Signup Panel - Hidden on mobile */}
       <section className="hidden lg:block lg:w-1/2">
         <SignupPanel />
       </section>

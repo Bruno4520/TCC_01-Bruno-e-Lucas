@@ -67,7 +67,6 @@ export function ChangePasswordModal({
       />
 
       <div className="relative bg-card text-card-foreground rounded-3xl shadow-2xl w-full max-w-md overflow-hidden border border-border/50 animate-in fade-in zoom-in-95 duration-200">
-        {/* Cabeçalho do Modal */}
         <div className="bg-muted/30 border-b border-border/50 px-8 py-6 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-[#2B5BBA]/10 rounded-xl flex items-center justify-center">
@@ -90,9 +89,7 @@ export function ChangePasswordModal({
           </button>
         </div>
 
-        {/* Corpo do Formulário */}
         <form onSubmit={handleSubmit} className="p-8 space-y-5">
-          {/* Senha Atual */}
           <div>
             <label className="block text-sm font-medium text-foreground mb-2">
               Senha Atual
@@ -118,7 +115,6 @@ export function ChangePasswordModal({
 
           <div className="h-px w-full bg-border/50 my-2" />
 
-          {/* Nova Senha */}
           <div>
             <label className="block text-sm font-medium text-foreground mb-2">
               Nova Senha
@@ -143,7 +139,6 @@ export function ChangePasswordModal({
             </div>
           </div>
 
-          {/* Confirmar Nova Senha */}
           <div>
             <label className="block text-sm font-medium text-foreground mb-2">
               Confirmar Nova Senha
@@ -166,7 +161,6 @@ export function ChangePasswordModal({
               </button>
             </div>
 
-            {/* Feedback Visual Simples */}
             {newPassword &&
               confirmPassword &&
               newPassword !== confirmPassword && (
@@ -183,7 +177,6 @@ export function ChangePasswordModal({
               )}
           </div>
 
-          {/* Botões */}
           <div className="flex gap-4 pt-4 mt-2">
             <button
               type="button"

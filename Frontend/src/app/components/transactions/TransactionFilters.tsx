@@ -8,7 +8,6 @@ export function TransactionFilters({ onFilter }: TransactionFiltersProps) {
   return (
     <div className="bg-card rounded-2xl p-6 shadow-sm border border-border/50 mb-6 transition-colors duration-300">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4 mb-2">
-        {/* Período */}
         <div>
           <label
             htmlFor="period"
@@ -29,7 +28,6 @@ export function TransactionFilters({ onFilter }: TransactionFiltersProps) {
           </select>
         </div>
 
-        {/* Conta */}
         <div>
           <label
             htmlFor="account"
@@ -48,7 +46,6 @@ export function TransactionFilters({ onFilter }: TransactionFiltersProps) {
           </select>
         </div>
 
-        {/* Categoria */}
         <div>
           <label
             htmlFor="category"
@@ -70,7 +67,6 @@ export function TransactionFilters({ onFilter }: TransactionFiltersProps) {
           </select>
         </div>
 
-        {/* Tipo */}
         <div>
           <label
             htmlFor="type"
@@ -88,7 +84,6 @@ export function TransactionFilters({ onFilter }: TransactionFiltersProps) {
           </select>
         </div>
 
-        {/* Buscar */}
         <div className="md:col-span-2 lg:col-span-2">
           <label
             htmlFor="search"

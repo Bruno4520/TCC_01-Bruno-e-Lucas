@@ -116,7 +116,6 @@ export function NewBudgetModal({
         </div>
 
         <form onSubmit={handleSubmit} className="p-8 space-y-6">
-          {/* Categoria */}
           <div>
             <label className="block text-sm font-medium text-foreground mb-2">
               Categoria
@@ -137,7 +136,6 @@ export function NewBudgetModal({
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Valor Planejado */}
             <div>
               <label className="block text-sm font-medium text-foreground mb-2">
                 Valor Limite
@@ -157,7 +155,6 @@ export function NewBudgetModal({
               </div>
             </div>
 
-            {/* Mês de Referência */}
             <div>
               <label className="block text-sm font-medium text-foreground mb-2">
                 Mês e Ano
@@ -172,7 +169,6 @@ export function NewBudgetModal({
             </div>
           </div>
 
-          {/* Botões */}
           <div className="flex gap-4 pt-6 border-t border-border/50 mt-8">
             <button
               type="button"

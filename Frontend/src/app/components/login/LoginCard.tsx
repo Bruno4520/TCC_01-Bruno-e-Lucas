@@ -118,7 +118,6 @@ export function LoginCard({
           </div>
         </div>
 
-        {/* Lembrar e Esqueci a Senha */}
         <div className="flex items-center justify-between pt-1">
           <label
             htmlFor="remember"
@@ -153,7 +152,6 @@ export function LoginCard({
           Entrar
         </button>
 
-        {/* Criar Conta */}
         <div className="text-center pt-4 border-t border-border/50">
           <span className="text-sm text-muted-foreground">
             Não tem uma conta?{" "}

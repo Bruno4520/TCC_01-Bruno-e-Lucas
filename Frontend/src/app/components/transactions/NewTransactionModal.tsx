@@ -384,7 +384,6 @@ export function NewTransactionModal({
           {formaPagamento === "cartao" && (
             <div className="p-5 bg-muted/30 rounded-2xl border border-border/50">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-5">
-                {/* Seleção do Cartão */}
                 <div>
                   <label className="block text-sm font-medium text-foreground mb-2">
                     Cartão

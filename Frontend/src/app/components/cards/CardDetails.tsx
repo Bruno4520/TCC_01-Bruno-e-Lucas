@@ -28,7 +28,6 @@ export function CardDetails({ card }: CardDetailsProps) {
       </div>
 
       <div className="space-y-6">
-        {/* Barra de Progresso */}
         <div>
           <div className="flex justify-between text-sm mb-2 font-medium">
             <span className="text-muted-foreground">Limite Utilizado</span>
@@ -50,7 +49,6 @@ export function CardDetails({ card }: CardDetailsProps) {
           </div>
         </div>
 
-        {/* Valores */}
         <div className="grid grid-cols-2 gap-4">
           <div className="p-4 bg-muted/30 rounded-2xl border border-border/30">
             <p className="text-xs text-muted-foreground font-bold uppercase mb-1">
@@ -68,7 +66,6 @@ export function CardDetails({ card }: CardDetailsProps) {
           </div>
         </div>
 
-        {/* Datas importantes do Prisma */}
         <div className="flex flex-wrap gap-4 pt-4 border-t border-border/50">
           <div className="flex items-center gap-2 text-sm">
             <Calendar className="text-muted-foreground" size={16} />

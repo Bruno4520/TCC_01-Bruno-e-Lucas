@@ -3,7 +3,6 @@ export function Footer() {
     <footer className="bg-card border-t border-border mt-auto transition-colors duration-300 py-8">
       <div className="px-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Brand */}
           <div>
             <div className="flex items-center gap-3 mb-4">
               <div className="w-10 h-10 bg-[#2B5BBA] rounded-xl flex items-center justify-center shadow-md">
@@ -39,7 +38,6 @@ export function Footer() {
             </p>
           </div>
 
-          {/* Links Úteis */}
           <div>
             <h4 className="font-semibold text-foreground mb-4">Links Úteis</h4>
             <ul className="space-y-2 text-sm">
@@ -70,7 +68,6 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Contato */}
           <div>
             <h4 className="font-semibold text-foreground mb-4">Contato</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
@@ -80,7 +77,6 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Copyright */}
         <div className="border-t border-border mt-8 pt-6 text-center text-sm text-muted-foreground">
           © 2026 PayGrid. Todos os direitos reservados.
         </div>

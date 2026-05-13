@@ -77,7 +77,6 @@ export function ResultsCard({
         </button>
       </div>
 
-      {/* Main Results */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         <div className="bg-blue-500/10 rounded-2xl p-5 border border-blue-500/20">
           <div className="flex items-center gap-2 mb-3">
@@ -152,7 +151,6 @@ export function ResultsCard({
         </div>
       </div>
 
-      {/* Additional Info */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
         <div className="bg-muted/30 border border-border/50 rounded-2xl p-4 flex items-center gap-4">
           <div className="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center flex-shrink-0">

@@ -27,38 +27,33 @@ const mockCategories = [
   },
   {
     id: "c3",
-    nome: "Transporte",
-    icone: "car",
+    nome: "Contas",
+    icone: "receipt",
     cor: "bg-purple-500",
     isSystem: true,
   },
   {
     id: "c4",
-    nome: "Saúde",
-    icone: "health",
-    cor: "bg-red-500",
+    nome: "Transporte",
+    icone: "car",
+    cor: "bg-orange-500",
     isSystem: true,
   },
   {
     id: "c5",
     nome: "Lazer",
     icone: "game",
-    cor: "bg-yellow-500",
-    isSystem: false,
-  },
-  {
-    id: "c6",
-    nome: "Compras",
-    icone: "shopping",
-    cor: "bg-pink-500",
+    cor: "bg-red-500",
     isSystem: false,
   },
 ];
 
 const mockBudgets = [
-  { categoriaId: "c1", planned: 2500, spent: 2350 },
-  { categoriaId: "c2", planned: 1200, spent: 1347.5 },
-  { categoriaId: "c3", planned: 800, spent: 650 },
+  { categoriaId: "c1", planned: 1000, spent: 800 },
+  { categoriaId: "c2", planned: 600, spent: 450.9 },
+  { categoriaId: "c3", planned: 300, spent: 250 },
+  { categoriaId: "c4", planned: 200, spent: 120 },
+  { categoriaId: "c5", planned: 200, spent: 129.1 },
 ];
 
 export function BudgetsPage() {
@@ -112,7 +107,6 @@ export function BudgetsPage() {
         <Header userName="João Silva" userRole="Administrador" />
 
         <main className="flex-1 overflow-y-auto p-6 md:p-8">
-          {/* Cabeçalho */}
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 gap-4">
             <div>
               <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">
@@ -138,7 +132,6 @@ export function BudgetsPage() {
             </div>
           </div>
 
-          {/* Cards de Resumo */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
             <BudgetSummaryCard type="planned" value={totalPlanned} />
             <BudgetSummaryCard type="spent" value={totalSpent} />
@@ -149,7 +142,6 @@ export function BudgetsPage() {
             As Suas Categorias
           </h2>
 
-          {/* Grid de Categorias */}
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 pb-8">
             {mockCategories.map((cat) => {
               const budget = mockBudgets.find((b) => b.categoriaId === cat.id);
@@ -175,7 +167,6 @@ export function BudgetsPage() {
         <Footer />
       </div>
 
-      {/* Modais da Página */}
       <NewBudgetModal
         isOpen={isBudgetModalOpen}
         onClose={() => setIsBudgetModalOpen(false)}

@@ -54,7 +54,6 @@ export function DashboardPage() {
         <Header userName="João Silva" userRole="Administrador" />
 
         <main className="flex-1 overflow-y-auto p-6 md:p-8">
-          {/* Page Title */}
           <div className="mb-8">
             <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">
               Visão Geral
@@ -64,8 +63,6 @@ export function DashboardPage() {
             </p>
           </div>
 
-          {/* Summary Cards */}
-          {/* O uso do "/10" cria fundos translúcidos perfeitos para claro e escuro */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
             <SummaryCard
               title="Saldo em Conta"
@@ -101,7 +98,6 @@ export function DashboardPage() {
             />
           </div>
 
-          {/* Welcome Banner */}
           <div className="mb-8">
             <WelcomeBanner
               userName="João"
@@ -112,7 +108,6 @@ export function DashboardPage() {
             />
           </div>
 
-          {/* Transactions and Quick Actions */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
             <div className="lg:col-span-2">
               <RecentTransactions
@@ -130,7 +125,6 @@ export function DashboardPage() {
             </div>
           </div>
 
-          {/* Charts */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <MonthlyOverview />
             <ExpensesByCategory />
@@ -140,7 +134,6 @@ export function DashboardPage() {
         <Footer />
       </div>
 
-      {/* Modais Roteados */}
       <NewTransactionModal
         isOpen={isTransactionModalOpen}
         onClose={() => setIsTransactionModalOpen(false)}

@@ -21,30 +21,29 @@ import {
 } from "recharts";
 
 const categoryData = [
-  { id: "moradia", name: "Moradia", value: 34.4, color: "#3B82F6" },
-  { id: "alimentacao", name: "Alimentação", value: 28.6, color: "#10B981" },
-  { id: "transporte", name: "Transporte", value: 13.7, color: "#8B5CF6" },
-  { id: "lazer", name: "Lazer", value: 8.36, color: "#F59E0B" },
-  { id: "saude", name: "Saúde", value: 8.36, color: "#EF4444" },
-  { id: "educacao", name: "Educação", value: 6.73, color: "#EC4899" },
+  { id: "moradia", name: "Moradia", value: 45.7, color: "#3B82F6" },
+  { id: "alimentacao", name: "Alimentação", value: 25.8, color: "#10B981" },
+  { id: "contas", name: "Contas", value: 14.3, color: "#8B5CF6" },
+  { id: "lazer", name: "Lazer", value: 7.4, color: "#EF4444" },
+  { id: "transporte", name: "Transporte", value: 6.8, color: "#F59E0B" },
 ];
 
 const comparisonData = [
-  { id: "jan", month: "Jan", receitas: 11000, despesas: 8500 },
-  { id: "fev", month: "Fev", receitas: 11500, despesas: 8200 },
-  { id: "mar", month: "Mar", receitas: 11800, despesas: 8000 },
-  { id: "abr", month: "Abr", receitas: 12000, despesas: 8300 },
-  { id: "mai", month: "Mai", receitas: 12200, despesas: 8100 },
-  { id: "jun", month: "Jun", receitas: 12450, despesas: 8730 },
+  { id: "jan", month: "Jan", receitas: 3800, despesas: 3100 },
+  { id: "fev", month: "Fev", receitas: 3800, despesas: 2800 },
+  { id: "mar", month: "Mar", receitas: 4000, despesas: 2950 },
+  { id: "abr", month: "Abr", receitas: 4000, despesas: 3200 },
+  { id: "mai", month: "Mai", receitas: 4500, despesas: 2700 },
+  { id: "jun", month: "Jun", receitas: 4200, despesas: 1750 },
 ];
 
 const evolutionData = [
-  { id: "jan", month: "Jan", receitas: 11000, despesas: 8500, saldo: 2500 },
-  { id: "fev", month: "Fev", receitas: 11500, despesas: 8200, saldo: 3300 },
-  { id: "mar", month: "Mar", receitas: 11800, despesas: 8000, saldo: 3800 },
-  { id: "abr", month: "Abr", receitas: 12000, despesas: 8300, saldo: 3700 },
-  { id: "mai", month: "Mai", receitas: 12200, despesas: 8100, saldo: 4100 },
-  { id: "jun", month: "Jun", receitas: 12450, despesas: 8730, saldo: 3720 },
+  { id: "jan", month: "Jan", receitas: 3800, despesas: 3100, saldo: 700 },
+  { id: "fev", month: "Fev", receitas: 3800, despesas: 2800, saldo: 1000 },
+  { id: "mar", month: "Mar", receitas: 4000, despesas: 2950, saldo: 1050 },
+  { id: "abr", month: "Abr", receitas: 4000, despesas: 3200, saldo: 800 },
+  { id: "mai", month: "Mai", receitas: 4500, despesas: 2700, saldo: 1800 },
+  { id: "jun", month: "Jun", receitas: 4200, despesas: 1750, saldo: 2450 },
 ];
 
 export function ReportsPage() {
@@ -139,7 +138,6 @@ export function ReportsPage() {
             </p>
           </div>
 
-          {/* Filtros */}
           <div className="bg-card rounded-3xl p-6 shadow-sm border border-border/50 mb-8 transition-colors duration-300">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
               <div>
@@ -212,7 +210,6 @@ export function ReportsPage() {
             </div>
           </div>
 
-          {/* Cards de Resumo */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
             <ReportSummaryCard
               type="income"
@@ -231,9 +228,7 @@ export function ReportsPage() {
             />
           </div>
 
-          {/* Gráficos Linha 1 */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-            {/* PieChart */}
             <div className="bg-card rounded-3xl p-6 shadow-sm border border-border/50 transition-colors duration-300">
               <h3 className="text-lg font-bold text-foreground mb-6">
                 Despesas por Categoria
@@ -270,7 +265,6 @@ export function ReportsPage() {
               </ResponsiveContainer>
             </div>
 
-            {/* BarChart */}
             <div className="bg-card rounded-3xl p-6 shadow-sm border border-border/50 transition-colors duration-300">
               <h3 className="text-lg font-bold text-foreground mb-6">
                 Receitas vs Despesas
@@ -324,7 +318,6 @@ export function ReportsPage() {
             </div>
           </div>
 
-          {/* Gráfico Linha 2 */}
           <div className="bg-card rounded-3xl p-6 shadow-sm border border-border/50 transition-colors duration-300">
             <h3 className="text-lg font-bold text-foreground mb-6">
               Evolução Mensal

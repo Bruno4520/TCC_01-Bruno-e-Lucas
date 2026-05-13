@@ -28,10 +28,8 @@ export function SettingsPage() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
-            {/* LADO ESQUERDO: Formulário Principal */}
             <div className="lg:col-span-2">
               <div className="bg-card rounded-3xl p-8 shadow-sm border border-border/50 transition-colors">
-                {/* Foto do Usuário */}
                 <div className="flex flex-col items-center mb-8">
                   <div className="relative group cursor-pointer">
                     <div className="w-24 h-24 rounded-full bg-linear-to-br from-[#2B5BBA] to-[#4C7FEE] flex items-center justify-center text-white text-3xl font-bold shadow-lg group-hover:opacity-90 transition-opacity">
@@ -46,7 +44,6 @@ export function SettingsPage() {
                   </button>
                 </div>
 
-                {/* Formulário */}
                 <form
                   className="space-y-6"
                   onSubmit={(e) => e.preventDefault()}
@@ -91,9 +88,7 @@ export function SettingsPage() {
               </div>
             </div>
 
-            {/* LADO DIREITO: Ações Rápidas e Segurança */}
             <div className="space-y-6">
-              {/* Segurança */}
               <div className="bg-card rounded-3xl p-6 shadow-sm border border-border/50 transition-colors">
                 <h3 className="text-lg font-bold text-foreground mb-4">
                   Segurança
@@ -118,7 +113,6 @@ export function SettingsPage() {
                 </button>
               </div>
 
-              {/* Zona de Perigo / Conta */}
               <div className="bg-card rounded-3xl p-6 shadow-sm border border-red-500/20 transition-colors">
                 <h3 className="text-lg font-bold text-red-600 dark:text-red-400 mb-4">
                   Conta

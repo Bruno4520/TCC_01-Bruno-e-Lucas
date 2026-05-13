@@ -139,7 +139,6 @@ export function TransactionTable({
           </table>
         </div>
 
-        {/* Container de Paginação */}
         <div className="px-6 py-4 border-t border-border bg-card flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-sm font-medium text-muted-foreground">
             Mostrando <span className="text-foreground">1-6</span> de{" "}
@@ -165,7 +164,6 @@ export function TransactionTable({
         </div>
       </div>
 
-      {/* Modal de Observação Refatorado */}
       {selectedObservation && (
         <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
           <div className="bg-card text-card-foreground rounded-2xl shadow-2xl w-full max-w-md overflow-hidden animate-in fade-in zoom-in-95 duration-200 border border-border/50">
