@@ -46,10 +46,10 @@ export function InvoiceCard({
   return (
     <button
       onClick={onClick}
-      className={`bg-card text-card-foreground rounded-3xl p-6 shadow-sm border transition-all duration-300 text-left w-full hover:shadow-md ${
+      className={`relative text-card-foreground rounded-3xl p-6 transition-all duration-300 text-left w-full border-2 ${
         isActive
-          ? "border-transparent ring-2 ring-offset-2 ring-[#2B5BBA] dark:ring-offset-zinc-900 scale-[1.02]"
-          : "border-border/50 hover:border-border hover:scale-[1.01]"
+          ? "border-[#2B5BBA] bg-blue-500/5 shadow-md scale-[1.02]"
+          : "border-border/50 bg-card hover:border-border hover:shadow-sm"
       }`}
     >
       <div className="flex items-start justify-between mb-5">

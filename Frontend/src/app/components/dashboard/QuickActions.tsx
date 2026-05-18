@@ -1,4 +1,4 @@
-import { Plus, Minus, ArrowLeftRight, PieChart } from "lucide-react";
+import { Plus, Minus, ArrowLeftRight, CreditCard } from "lucide-react";
 
 interface QuickActionProps {
   icon: React.ReactNode;
@@ -37,14 +37,14 @@ interface QuickActionsProps {
   onNewIncome: () => void;
   onNewExpense: () => void;
   onTransfer: () => void;
-  onCreateBudget: () => void;
+  onPayInvoice: () => void;
 }
 
 export function QuickActions({
   onNewIncome,
   onNewExpense,
   onTransfer,
-  onCreateBudget,
+  onPayInvoice,
 }: QuickActionsProps) {
   return (
     <div className="bg-card text-card-foreground rounded-2xl p-6 shadow-sm border border-border/50 transition-colors duration-300 h-full">
@@ -87,15 +87,15 @@ export function QuickActions({
 
         <QuickActionCard
           icon={
-            <PieChart
+            <CreditCard
               className="text-purple-600 dark:text-purple-400"
               size={20}
             />
           }
-          title="Criar Orçamento"
-          description="Definir limites de gastos"
+          title="Pagar Fatura"
+          description="Realizar o pagamento de uma fatura"
           bgColor="bg-purple-500/10"
-          onClick={onCreateBudget}
+          onClick={onPayInvoice}
         />
       </div>
     </div>

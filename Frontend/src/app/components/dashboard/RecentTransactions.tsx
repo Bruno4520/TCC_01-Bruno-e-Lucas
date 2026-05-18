@@ -1,4 +1,4 @@
-import { ArrowDownRight, ArrowUpRight } from "lucide-react";
+import { ArrowDownRight, ArrowUpRight, ReceiptText } from "lucide-react";
 
 interface Transaction {
   id: string;
@@ -10,42 +10,50 @@ interface Transaction {
 }
 
 interface RecentTransactionsProps {
-  onAddTransaction: () => void;
+  onAddTransaction?: () => void;
   onViewAll: () => void;
 }
 
 const mockTransactions: Transaction[] = [
   {
     id: "1",
-    title: "Supermercado Extra",
+    title: "Churrascaria Fogo Forte",
     category: "Alimentação",
-    amount: 450.9,
+    amount: 185.9,
     type: "expense",
     date: "Hoje",
   },
   {
     id: "2",
-    title: "Salário Mensal",
+    title: "Posto Ipiranga",
+    category: "Transporte",
+    amount: 250.0,
+    type: "expense",
+    date: "Hoje",
+  },
+  {
+    id: "3",
+    title: "Salário - Empresa XYZ",
     category: "Receitas",
-    amount: 4200.0,
+    amount: 6500.0,
     type: "income",
     date: "Ontem",
   },
   {
-    id: "3",
-    title: "Uber",
+    id: "4",
+    title: "Uber (Trabalho)",
     category: "Transporte",
-    amount: 35.5,
+    amount: 45.0,
     type: "expense",
-    date: "Ontem",
+    date: "15 de Mai",
   },
   {
-    id: "4",
-    title: "Netflix",
-    category: "Lazer",
-    amount: 39.9,
+    id: "5",
+    title: "Supermercado Extra",
+    category: "Alimentação",
+    amount: 680.0,
     type: "expense",
-    date: "12 de Mai",
+    date: "14 de Mai",
   },
 ];
 
@@ -104,6 +112,17 @@ export function RecentTransactions({ onViewAll }: RecentTransactionsProps) {
             </span>
           </div>
         ))}
+        {mockTransactions.length === 0 && (
+          <div className="flex-1 flex flex-col items-center justify-center text-center py-8">
+            <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center mb-4 text-muted-foreground">
+              <ReceiptText size={32} opacity={0.5} />
+            </div>
+            <p className="text-foreground font-bold mb-1">Nenhuma transação</p>
+            <p className="text-sm text-muted-foreground max-w-[200px]">
+              Os seus registos recentes aparecerão aqui.
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );

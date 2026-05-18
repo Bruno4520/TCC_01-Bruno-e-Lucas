@@ -10,14 +10,13 @@ import {
 } from "recharts";
 
 const data = [
-  { id: "jan", month: "Jan", receitas: 3800, despesas: 3100 },
-  { id: "fev", month: "Fev", receitas: 3800, despesas: 2800 },
-  { id: "mar", month: "Mar", receitas: 4000, despesas: 2950 },
-  { id: "abr", month: "Abr", receitas: 4000, despesas: 3200 },
-  { id: "mai", month: "Mai", receitas: 4500, despesas: 2700 },
-  { id: "jun", month: "Jun", receitas: 4200, despesas: 1750 },
+  { id: "jan", month: "Jan", receitas: 6500, despesas: 5100 },
+  { id: "fev", month: "Fev", receitas: 6500, despesas: 4800 },
+  { id: "mar", month: "Mar", receitas: 6800, despesas: 5200 },
+  { id: "abr", month: "Abr", receitas: 6500, despesas: 4900 },
+  { id: "mai", month: "Mai", receitas: 7500, despesas: 5800 },
+  { id: "jun", month: "Jun", receitas: 7700, despesas: 3850 },
 ];
-
 export function MonthlyOverview() {
   return (
     <div className="bg-card text-card-foreground rounded-2xl p-6 shadow-sm border border-border/50 transition-colors duration-300">

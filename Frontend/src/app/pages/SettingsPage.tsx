@@ -6,16 +6,16 @@ import { Camera, Lock, LogOut, ShieldAlert, ChevronRight } from "lucide-react";
 import { ChangePasswordModal } from "../components/password/ChangePasswordModal";
 
 export function SettingsPage() {
-  const [name, setName] = useState("João Silva");
+  const [name, setName] = useState("Carlos Eduardo");
   const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
-  const email = "joao.silva@email.com";
+  const email = "carlos.eduardo@email.com";
 
   return (
     <div className="flex min-h-screen bg-background transition-colors duration-300">
       <Sidebar />
 
       <div className="flex-1 flex flex-col overflow-hidden">
-        <Header userName={name} userRole="Administrador" />
+        <Header userName={name} userRole="Usuário Premium" />
 
         <main className="flex-1 overflow-y-auto p-6 md:p-8">
           <div className="mb-8">
@@ -23,7 +23,7 @@ export function SettingsPage() {
               Meu Perfil
             </h1>
             <p className="text-muted-foreground font-medium">
-              Gerencie suas informações pessoais e preferências da conta
+              Gerencie as suas informações pessoais e preferências da conta
             </p>
           </div>
 
@@ -32,7 +32,7 @@ export function SettingsPage() {
               <div className="bg-card rounded-3xl p-8 shadow-sm border border-border/50 transition-colors">
                 <div className="flex flex-col items-center mb-8">
                   <div className="relative group cursor-pointer">
-                    <div className="w-24 h-24 rounded-full bg-linear-to-br from-[#2B5BBA] to-[#4C7FEE] flex items-center justify-center text-white text-3xl font-bold shadow-lg group-hover:opacity-90 transition-opacity">
+                    <div className="w-24 h-24 rounded-full bg-gradient-to-br from-[#2B5BBA] to-[#4C7FEE] flex items-center justify-center text-white text-3xl font-bold shadow-lg group-hover:opacity-90 transition-opacity">
                       {name.charAt(0)}
                     </div>
                     <div className="absolute bottom-0 right-0 w-8 h-8 bg-[#2B5BBA] rounded-full border-2 border-card flex items-center justify-center shadow-sm">
@@ -46,7 +46,10 @@ export function SettingsPage() {
 
                 <form
                   className="space-y-6"
-                  onSubmit={(e) => e.preventDefault()}
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    console.log("Salvar alterações de perfil:", { name });
+                  }}
                 >
                   <div>
                     <label className="block text-sm font-medium text-foreground mb-2">

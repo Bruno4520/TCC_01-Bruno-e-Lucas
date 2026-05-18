@@ -105,7 +105,7 @@ export function AccountsTable({
                     </span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-center">
-                    <div className="flex items-center justify-center gap-1 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity">
+                    <div className="flex items-center justify-center gap-1 opacity-60 md:opacity-15 md:group-hover:opacity-100 transition-opacity duration-200">
                       <button
                         onClick={() => onEdit(account.id)}
                         className="p-2 text-muted-foreground hover:text-[#2B5BBA] hover:bg-blue-500/10 rounded-lg transition-colors"

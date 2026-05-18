@@ -11,7 +11,6 @@ import { MonthlyOverview } from "../components/dashboard/MonthlyOverview";
 import { ExpensesByCategory } from "../components/dashboard/ExpensesByCategory";
 import { Footer } from "../components/dashboard/Footer";
 import { NewTransactionModal } from "../components/transactions/NewTransactionModal";
-import { NewBudgetModal } from "../components/budgets/NewBudgetModal";
 
 export function DashboardPage() {
   const navigate = useNavigate();
@@ -44,14 +43,16 @@ export function DashboardPage() {
     setIsTransactionModalOpen(true);
   };
 
-  const handleCreateBudget = () => setIsBudgetModalOpen(true);
+  const handlePayInvoice = () => {
+    console.log("Pagar fatura");
+  };
 
   return (
     <div className="flex min-h-screen bg-background transition-colors duration-300">
       <Sidebar />
 
       <div className="flex-1 flex flex-col overflow-hidden">
-        <Header userName="João Silva" userRole="Administrador" />
+        <Header userName="Carlos Eduardo" userRole="Usuário Premium" />
 
         <main className="flex-1 overflow-y-auto p-6 md:p-8">
           <div className="mb-8">
@@ -62,48 +63,45 @@ export function DashboardPage() {
               Acompanhe o seu saldo e as últimas movimentações
             </p>
           </div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
             <SummaryCard
               title="Saldo em Conta"
-              value="R$ 2.450,00"
+              value="R$ 3.850,00"
               icon={Wallet}
               iconBgColor="bg-blue-500/10"
               iconColor="text-blue-600 dark:text-blue-400"
-              trend={{ value: "3.2%", isPositive: true }}
+              trend={{ value: "5.2%", isPositive: true }}
             />
             <SummaryCard
               title="Receitas do Mês"
-              value="R$ 4.200,00"
+              value="R$ 7.700,00"
               icon={TrendingUp}
               iconBgColor="bg-emerald-500/10"
               iconColor="text-emerald-600 dark:text-emerald-400"
-              trend={{ value: "6%", isPositive: true }}
+              trend={{ value: "12%", isPositive: true }}
             />
             <SummaryCard
               title="Despesas do Mês"
-              value="R$ 1.750,00"
+              value="R$ 3.850,00"
               icon={TrendingDown}
               iconBgColor="bg-red-500/10"
               iconColor="text-red-600 dark:text-red-400"
-              trend={{ value: "5%", isPositive: false }}
+              trend={{ value: "2.1%", isPositive: false }}
             />
             <SummaryCard
               title="Crédito Disponível"
-              value="R$ 3.500,00"
+              value="R$ 4.200,00"
               icon={CreditCard}
               iconBgColor="bg-purple-500/10"
               iconColor="text-purple-600 dark:text-purple-400"
-              progressBar={{ percentage: 70, color: "bg-purple-500" }}
+              progressBar={{ percentage: 30, color: "bg-purple-500" }}
             />
           </div>
 
           <div className="mb-8">
             <WelcomeBanner
-              userName="João"
-              hasTransactions={
-                true
-              } /* Mude para false para ver a tela azul de primeira transação */
+              userName="Carlos"
+              hasTransactions={true}
               onAddTransaction={handleAddTransaction}
             />
           </div>
@@ -120,7 +118,7 @@ export function DashboardPage() {
                 onNewIncome={handleNewIncome}
                 onNewExpense={handleNewExpense}
                 onTransfer={handleTransfer}
-                onCreateBudget={handleCreateBudget}
+                onPayInvoice={handlePayInvoice}
               />
             </div>
           </div>
@@ -141,15 +139,6 @@ export function DashboardPage() {
         onSave={(data) => {
           console.log("Salvar transação:", data);
           setIsTransactionModalOpen(false);
-        }}
-      />
-
-      <NewBudgetModal
-        isOpen={isBudgetModalOpen}
-        onClose={() => setIsBudgetModalOpen(false)}
-        onSave={(data) => {
-          console.log("Salvar orçamento:", data);
-          setIsBudgetModalOpen(false);
         }}
       />
     </div>

@@ -15,8 +15,8 @@ const invoices = [
     month: "Junho",
     year: 2026,
     status: "open" as const,
-    dueDate: "12/07/2026",
-    totalAmount: 1000.0,
+    dueDate: "12/06/2026",
+    totalAmount: 1100.0,
     purchasesCount: 3,
   },
   {
@@ -24,49 +24,48 @@ const invoices = [
     month: "Maio",
     year: 2026,
     status: "paid" as const,
-    dueDate: "12/06/2026",
+    dueDate: "12/05/2026",
     totalAmount: 950.5,
-    purchasesCount: 12,
+    purchasesCount: 8,
   },
   {
     id: "3",
     month: "Abril",
     year: 2026,
     status: "paid" as const,
-    dueDate: "12/05/2026",
-    totalAmount: 1120.75,
-    purchasesCount: 15,
+    dueDate: "12/04/2026",
+    totalAmount: 1050.75,
+    purchasesCount: 12,
   },
 ];
 
-// Transações que somam exatamente R$ 1.000,00
 const invoiceItems: InvoiceItem[] = [
   {
     id: "1",
-    date: "08/06/2026",
+    date: "17/05/2026",
+    description: "Churrascaria Fogo Forte",
+    category: "Alimentação",
+    categoryColor: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400",
+    installment: "À vista",
+    amount: 185.9,
+  },
+  {
+    id: "2",
+    date: "14/05/2026",
     description: "Supermercado Extra",
     category: "Alimentação",
     categoryColor: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400",
     installment: "À vista",
-    amount: 450.9,
-  },
-  {
-    id: "2",
-    date: "22/06/2026",
-    description: "iFood (Pizza)",
-    category: "Alimentação",
-    categoryColor: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400",
-    installment: "À vista",
-    amount: 89.2,
+    amount: 680.0,
   },
   {
     id: "3",
-    date: "25/06/2026",
-    description: "Smartphone Samsung",
-    category: "Eletrônicos",
+    date: "06/05/2026",
+    description: "Amazon Brasil",
+    category: "Eletrónicos",
     categoryColor: "bg-orange-500/10 text-orange-600 dark:text-orange-400",
     installment: "3/10",
-    amount: 459.9,
+    amount: 234.1,
   },
 ];
 
@@ -85,7 +84,7 @@ export function InvoicesPage() {
       <Sidebar />
 
       <div className="flex-1 flex flex-col overflow-hidden">
-        <Header userName="João Silva" userRole="Administrador" />
+        <Header userName="Carlos Eduardo" userRole="Usuário Premium" />
 
         <main className="flex-1 overflow-y-auto p-6 md:p-8">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 gap-4">

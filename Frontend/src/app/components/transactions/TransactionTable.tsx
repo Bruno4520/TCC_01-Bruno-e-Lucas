@@ -104,19 +104,19 @@ export function TransactionTable({
                     </span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-center">
-                    <div className="flex items-center justify-center gap-1 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity">
-                      <button
-                        onClick={() =>
-                          setSelectedObservation(
-                            transaction.observation ||
-                              "Nenhuma observação registrada.",
-                          )
-                        }
-                        className={`p-2 text-muted-foreground hover:text-emerald-600 hover:bg-emerald-500/10 rounded-lg transition-colors ${transaction.observation ? "text-[#2B5BBA]" : ""}`}
-                        title="Ver observação"
-                      >
-                        <FileText size={16} />
-                      </button>
+                    <div className="flex items-center justify-center gap-1 opacity-60 md:opacity-15 md:group-hover:opacity-100 transition-opacity duration-200">
+                      {transaction.observation && (
+                        <button
+                          onClick={() =>
+                            setSelectedObservation(transaction.observation!)
+                          }
+                          className="p-2 text-muted-foreground hover:text-[#2B5BBA] hover:bg-blue-500/10 rounded-lg transition-colors"
+                          title="Ver observação"
+                        >
+                          <FileText size={16} />
+                        </button>
+                      )}
+
                       <button
                         onClick={() => onEdit(transaction.id)}
                         className="p-2 text-muted-foreground hover:text-[#2B5BBA] hover:bg-blue-500/10 rounded-lg transition-colors"
@@ -141,8 +141,9 @@ export function TransactionTable({
 
         <div className="px-6 py-4 border-t border-border bg-card flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-sm font-medium text-muted-foreground">
-            Mostrando <span className="text-foreground">1-6</span> de{" "}
-            <span className="text-foreground">156</span> transações
+            Mostrando{" "}
+            <span className="text-foreground">1-{transactions.length}</span> de{" "}
+            <span className="text-foreground">152</span> transações
           </p>
           <div className="flex items-center gap-1.5">
             <button className="px-3 py-1.5 text-sm font-medium text-foreground border border-border/50 rounded-lg hover:bg-muted transition-colors">

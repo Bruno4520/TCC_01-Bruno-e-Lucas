@@ -16,18 +16,18 @@ const mockCards = [
     brand: "Mastercard",
     lastDigits: "4582",
     limit: 3000,
-    usedLimit: 1000.0,
+    usedLimit: 1100.0,
     closingDay: 5,
     dueDay: 12,
     color: "from-orange-500 to-orange-600",
   },
   {
     id: "2",
-    name: "Nubank Ultravioleta",
+    name: "Cartão Nubank",
     brand: "Mastercard",
     lastDigits: "8892",
-    limit: 2500,
-    usedLimit: 1000.0,
+    limit: 3000,
+    usedLimit: 700.0,
     closingDay: 28,
     dueDay: 5,
     color: "from-purple-600 to-purple-800",
@@ -61,7 +61,7 @@ export function CardsPage() {
       <Sidebar />
 
       <div className="flex-1 flex flex-col overflow-hidden">
-        <Header userName="João Silva" userRole="Administrador" />
+        <Header userName="Carlos Eduardo" userRole="Usuário Premium" />
 
         <main className="flex-1 overflow-y-auto p-6 md:p-8">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 gap-4">

@@ -25,14 +25,14 @@ const summaryAccounts = [
   {
     type: "savings" as const,
     name: "Poupança Bradesco",
-    balance: 1000.0,
-    badge: "Ativa",
-    details: "Ag: 5678 • Cc: 88765-4",
+    balance: 2500.0,
+    badge: "Reserva",
+    details: "Ag: 5678 • Cp: 88765-4",
   },
   {
     type: "wallet" as const,
     name: "Carteira Física",
-    balance: 200.0,
+    balance: 100.0,
     badge: "Ativa",
     details: "Dinheiro em espécie",
   },
@@ -45,16 +45,16 @@ const accountsList: Account[] = [
     details: "Ag: 1234 • Cc: 12345-8",
     type: "checking",
     typeName: "Corrente",
-    balance: 12450.0,
+    balance: 1250.0,
     icon: "building",
   },
   {
     id: "2",
     name: "Poupança Bradesco",
-    details: "Ag: 5678 • Pp: 88765-4",
+    details: "Ag: 5678 • Cp: 88765-4",
     type: "savings",
     typeName: "Poupança",
-    balance: 8320.5,
+    balance: 2500.0,
     icon: "sprout",
   },
   {
@@ -63,17 +63,8 @@ const accountsList: Account[] = [
     details: "Dinheiro físico",
     type: "wallet",
     typeName: "Carteira",
-    balance: 540.0,
+    balance: 100.0,
     icon: "wallet",
-  },
-  {
-    id: "4",
-    name: "Conta Nubank",
-    details: "Ag: 0001 • Cc: 67890-2",
-    type: "checking",
-    typeName: "Corrente",
-    balance: 5672.3,
-    icon: "building",
   },
 ];
 
@@ -94,7 +85,7 @@ export function AccountsPage() {
       <Sidebar />
 
       <div className="flex-1 flex flex-col overflow-hidden">
-        <Header userName="João Silva" userRole="Administrador" />
+        <Header userName="Carlos Eduardo" userRole="Usuário Premium" />
 
         <main className="flex-1 overflow-y-auto p-6 md:p-8">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 gap-4">

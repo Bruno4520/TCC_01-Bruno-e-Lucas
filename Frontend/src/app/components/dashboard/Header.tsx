@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { Link } from "react-router";
 import {
   Search,
   Bell,
@@ -15,8 +16,8 @@ interface HeaderProps {
 }
 
 export function Header({
-  userName = "João Silva",
-  userRole = "Administrador",
+  userName = "Carlos Eduardo",
+  userRole = "Usuário Premium",
 }: HeaderProps) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -99,13 +100,14 @@ export function Header({
                 </p>
               </div>
 
-              <a
-                href="/configuracoes"
+              <Link
+                to="/configuracoes"
                 className="w-full flex items-center gap-3 px-4 py-2.5 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+                onClick={() => setIsDropdownOpen(false)}
               >
                 <Settings size={18} />
                 Meu Perfil
-              </a>
+              </Link>
 
               <button
                 onClick={toggleTheme}

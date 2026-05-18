@@ -4,10 +4,6 @@ import { Header } from "../components/dashboard/Header";
 import { Footer } from "../components/dashboard/Footer";
 import { BudgetSummaryCard } from "../components/budgets/BudgetSummaryCard";
 import { BudgetCategoryCard } from "../components/budgets/BudgetCategoryCard";
-import {
-  NewBudgetModal,
-  type BudgetData,
-} from "../components/budgets/NewBudgetModal";
 import { CategoryModal } from "../components/budgets/NewCategoryModal";
 
 const mockCategories = [
@@ -27,76 +23,70 @@ const mockCategories = [
   },
   {
     id: "c3",
-    nome: "Contas",
-    icone: "receipt",
-    cor: "bg-purple-500",
-    isSystem: true,
-  },
-  {
-    id: "c4",
     nome: "Transporte",
     icone: "car",
     cor: "bg-orange-500",
     isSystem: true,
   },
   {
-    id: "c5",
+    id: "c4",
     nome: "Lazer",
     icone: "game",
-    cor: "bg-red-500",
+    cor: "bg-purple-500",
+    isSystem: true,
+  },
+  {
+    id: "c5",
+    nome: "Compras Pessoais",
+    icone: "receipt",
+    cor: "bg-pink-500",
     isSystem: false,
   },
 ];
 
 const mockBudgets = [
-  { categoriaId: "c1", planned: 1000, spent: 800 },
-  { categoriaId: "c2", planned: 600, spent: 450.9 },
-  { categoriaId: "c3", planned: 300, spent: 250 },
-  { categoriaId: "c4", planned: 200, spent: 120 },
-  { categoriaId: "c5", planned: 200, spent: 129.1 },
+  { categoriaId: "c1", planned: 2200, spent: 2064.9 },
+  { categoriaId: "c2", planned: 1000, spent: 865.9 },
+  { categoriaId: "c3", planned: 400, spent: 295.0 },
+  { categoriaId: "c4", planned: 300, spent: 224.2 },
+  { categoriaId: "c5", planned: 500, spent: 400.0 },
 ];
 
 export function BudgetsPage() {
-  const currentMonth = new Date().toISOString().slice(0, 7);
-  const [selectedMonth, setSelectedMonth] = useState(currentMonth);
-
-  const [isBudgetModalOpen, setIsBudgetModalOpen] = useState(false);
-  const [selectedCategoryIdForBudget, setSelectedCategoryIdForBudget] =
-    useState("");
-
+  const [selectedMonth, setSelectedMonth] = useState("2026-05");
   const [isCategoryModalOpen, setIsCategoryModalOpen] = useState(false);
-  const [editingCategoryData, setEditingCategoryData] = useState<any>(null);
+  const [modalInitialData, setModalInitialData] = useState<any>(null);
 
   const totalPlanned = mockBudgets.reduce((sum, b) => sum + b.planned, 0);
   const totalSpent = mockBudgets.reduce((sum, b) => sum + b.spent, 0);
   const available = totalPlanned - totalSpent;
 
-  const handleOpenSetBudget = (categoryId: string) => {
-    setSelectedCategoryIdForBudget(categoryId);
-    setIsBudgetModalOpen(true);
-  };
-
-  const handleSaveBudget = (data: BudgetData) => {
-    console.log("Salvar Orçamento no Prisma:", data);
-  };
-
   const handleNewCategory = () => {
-    setEditingCategoryData(null);
+    setModalInitialData(null);
     setIsCategoryModalOpen(true);
   };
 
-  const handleEditCategory = (categoryId: string) => {
-    const categoryToEdit = mockCategories.find((c) => c.id === categoryId);
-    setEditingCategoryData(categoryToEdit);
+  const handleOpenConfigureCategory = (categoryId: string) => {
+    const category = mockCategories.find((c) => c.id === categoryId);
+    const budget = mockBudgets.find((b) => b.categoriaId === categoryId);
+
+    setModalInitialData({
+      ...category,
+      plannedBudget: budget ? budget.planned : 0,
+    });
     setIsCategoryModalOpen(true);
   };
 
   const handleDeleteCategory = (categoryId: string) => {
-    console.log("Excluir Categoria do Prisma, ID:", categoryId);
+    console.log(
+      "Excluir Categoria e seu Orçamento vinculados no Prisma, ID:",
+      categoryId,
+    );
   };
 
-  const handleSaveCategory = (data: any) => {
-    console.log("Salvar Categoria no Prisma:", data);
+  const handleSaveCategoryAndBudget = (data: any) => {
+    console.log("Payload Unificado Enviado para o Backend:", data);
+    setIsCategoryModalOpen(false);
   };
 
   return (
@@ -104,16 +94,17 @@ export function BudgetsPage() {
       <Sidebar />
 
       <div className="flex-1 flex flex-col overflow-hidden">
-        <Header userName="João Silva" userRole="Administrador" />
+        <Header userName="Carlos Eduardo" userRole="Usuário Premium" />
 
         <main className="flex-1 overflow-y-auto p-6 md:p-8">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 gap-4">
             <div>
               <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">
-                Controle de Gastos
+                Orçamentos
               </h1>
               <p className="text-muted-foreground font-medium">
-                Gira as suas categorias e limites de orçamento mensais
+                Controle de gastos: defina e acompanhe os seus limites mensais
+                por categoria
               </p>
             </div>
             <div className="flex flex-wrap items-center gap-3">
@@ -139,7 +130,7 @@ export function BudgetsPage() {
           </div>
 
           <h2 className="text-xl font-bold text-foreground mb-6">
-            As Suas Categorias
+            As Suas Categorias e Limites
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 pb-8">
@@ -156,8 +147,8 @@ export function BudgetsPage() {
                   planned={budget?.planned}
                   spent={budget?.spent}
                   isSystemCategory={cat.isSystem}
-                  onSetBudget={() => handleOpenSetBudget(cat.id)}
-                  onEditCategory={handleEditCategory}
+                  onSetBudget={() => handleOpenConfigureCategory(cat.id)}
+                  onEditCategory={handleOpenConfigureCategory}
                   onDeleteCategory={handleDeleteCategory}
                 />
               );
@@ -167,18 +158,11 @@ export function BudgetsPage() {
         <Footer />
       </div>
 
-      <NewBudgetModal
-        isOpen={isBudgetModalOpen}
-        onClose={() => setIsBudgetModalOpen(false)}
-        initialCategoryId={selectedCategoryIdForBudget}
-        onSave={handleSaveBudget}
-      />
-
       <CategoryModal
         isOpen={isCategoryModalOpen}
         onClose={() => setIsCategoryModalOpen(false)}
-        initialData={editingCategoryData}
-        onSave={handleSaveCategory}
+        initialData={modalInitialData}
+        onSave={handleSaveCategoryAndBudget}
       />
     </div>
   );

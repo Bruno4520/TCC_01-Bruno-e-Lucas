@@ -19,7 +19,7 @@ export function CreditCardItem({
   return (
     <button
       onClick={onClick}
-      className={`w-full relative overflow-hidden rounded-2xl p-6 text-left transition-all duration-300 ${
+      className={`w-full max-w-[400px] mx-auto aspect-[1.586/1] relative overflow-hidden rounded-2xl p-6 text-left flex flex-col justify-between transition-all duration-300 ${
         isActive
           ? `ring-2 ring-offset-2 ring-[#2B5BBA] dark:ring-offset-zinc-900 scale-[1.02] shadow-lg`
           : "opacity-70 hover:opacity-100 hover:scale-[1.01]"

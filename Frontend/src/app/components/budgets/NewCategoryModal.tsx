@@ -52,6 +52,7 @@ export function CategoryModal({
   const [descricao, setDescricao] = useState("");
   const [selectedIcon, setSelectedIcon] = useState("home");
   const [selectedColor, setSelectedColor] = useState(COLORS[0]);
+  const [plannedBudget, setPlannedBudget] = useState("");
 
   useEffect(() => {
     if (isOpen) {
@@ -60,6 +61,9 @@ export function CategoryModal({
         setDescricao(initialData.descricao || "");
         setSelectedIcon(initialData.icone || "home");
         setSelectedColor(initialData.cor || COLORS[0]);
+        setPlannedBudget(
+          initialData.plannedBudget ? String(initialData.plannedBudget) : "",
+        );
       } else {
         setNome("");
         setDescricao("");
@@ -82,6 +86,7 @@ export function CategoryModal({
       descricao,
       icone: selectedIcon,
       cor: selectedColor,
+      plannedBudget: plannedBudget ? Number(plannedBudget) : 0,
     });
     onClose();
   };
@@ -89,6 +94,7 @@ export function CategoryModal({
   if (!isOpen) return null;
 
   const isEditing = !!initialData;
+  const isSystemCategory = initialData?.isSystem === true;
 
   return (
     <div
@@ -126,6 +132,24 @@ export function CategoryModal({
               className="w-full px-4 py-3.5 bg-muted/50 border border-transparent rounded-xl text-foreground focus:outline-none focus:ring-2 focus:ring-[#2B5BBA] focus:bg-background transition-all font-medium"
               required
             />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-foreground mb-2">
+              Limite de Orçamento Mensal (R$)
+            </label>
+            <input
+              type="number"
+              step="0.01"
+              value={plannedBudget}
+              onChange={(e) => setPlannedBudget(e.target.value)}
+              placeholder="Ex: 500.00"
+              className="w-full px-4 py-3.5 bg-muted/50 border border-transparent rounded-xl text-foreground focus:outline-none focus:ring-2 focus:ring-[#2B5BBA] focus:bg-background transition-all font-bold text-lg"
+            />
+            <p className="text-xs text-muted-foreground mt-2">
+              Deixe em branco ou zero se não quiser definir um limite de gastos
+              para esta categoria.
+            </p>
           </div>
 
           <div>

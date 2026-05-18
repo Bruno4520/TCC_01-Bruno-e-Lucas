@@ -21,29 +21,53 @@ import {
 } from "recharts";
 
 const categoryData = [
-  { id: "moradia", name: "Moradia", value: 45.7, color: "#3B82F6" },
-  { id: "alimentacao", name: "Alimentação", value: 25.8, color: "#10B981" },
-  { id: "contas", name: "Contas", value: 14.3, color: "#8B5CF6" },
-  { id: "lazer", name: "Lazer", value: 7.4, color: "#EF4444" },
-  { id: "transporte", name: "Transporte", value: 6.8, color: "#F59E0B" },
+  {
+    id: "moradia",
+    name: "Moradia",
+    value: 2064.9,
+    percent: 53.6,
+    color: "#3B82F6",
+  },
+  {
+    id: "alimentacao",
+    name: "Alimentação",
+    value: 865.9,
+    percent: 22.5,
+    color: "#10B981",
+  },
+  {
+    id: "compras",
+    name: "Compras Pessoais",
+    value: 400.0,
+    percent: 10.4,
+    color: "#EC4899",
+  },
+  {
+    id: "transporte",
+    name: "Transporte",
+    value: 295.0,
+    percent: 7.7,
+    color: "#F59E0B",
+  },
+  { id: "lazer", name: "Lazer", value: 224.2, percent: 5.8, color: "#8B5CF6" },
 ];
 
 const comparisonData = [
-  { id: "jan", month: "Jan", receitas: 3800, despesas: 3100 },
-  { id: "fev", month: "Fev", receitas: 3800, despesas: 2800 },
-  { id: "mar", month: "Mar", receitas: 4000, despesas: 2950 },
-  { id: "abr", month: "Abr", receitas: 4000, despesas: 3200 },
-  { id: "mai", month: "Mai", receitas: 4500, despesas: 2700 },
-  { id: "jun", month: "Jun", receitas: 4200, despesas: 1750 },
+  { id: "dez", month: "Dez", receitas: 6500, despesas: 5100 },
+  { id: "jan", month: "Jan", receitas: 6500, despesas: 4800 },
+  { id: "fev", month: "Fev", receitas: 6500, despesas: 4900 },
+  { id: "mar", month: "Mar", receitas: 6800, despesas: 5200 },
+  { id: "abr", month: "Abr", receitas: 6500, despesas: 4900 },
+  { id: "mai", month: "Mai", receitas: 7700, despesas: 3850 },
 ];
 
 const evolutionData = [
-  { id: "jan", month: "Jan", receitas: 3800, despesas: 3100, saldo: 700 },
-  { id: "fev", month: "Fev", receitas: 3800, despesas: 2800, saldo: 1000 },
-  { id: "mar", month: "Mar", receitas: 4000, despesas: 2950, saldo: 1050 },
-  { id: "abr", month: "Abr", receitas: 4000, despesas: 3200, saldo: 800 },
-  { id: "mai", month: "Mai", receitas: 4500, despesas: 2700, saldo: 1800 },
-  { id: "jun", month: "Jun", receitas: 4200, despesas: 1750, saldo: 2450 },
+  { id: "dez", month: "Dez", receitas: 6500, despesas: 5100, saldo: 1400 },
+  { id: "jan", month: "Jan", receitas: 6500, despesas: 4800, saldo: 1700 },
+  { id: "fev", month: "Fev", receitas: 6500, despesas: 4900, saldo: 1600 },
+  { id: "mar", month: "Mar", receitas: 6800, despesas: 5200, saldo: 1600 },
+  { id: "abr", month: "Abr", receitas: 6500, despesas: 4900, saldo: 1600 },
+  { id: "mai", month: "Mai", receitas: 7700, despesas: 3850, saldo: 3850 },
 ];
 
 export function ReportsPage() {
@@ -94,30 +118,24 @@ export function ReportsPage() {
     return null;
   };
 
-  const renderCustomizedLabel = ({
-    cx,
-    cy,
-    midAngle,
-    innerRadius,
-    outerRadius,
-    percent,
-  }: any) => {
-    const RADIAN = Math.PI / 180;
-    const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-    const x = cx + radius * Math.cos(-midAngle * RADIAN);
-    const y = cy + radius * Math.sin(-midAngle * RADIAN);
+  const CustomLegend = ({ payload }: any) => {
     return (
-      <text
-        x={x}
-        y={y}
-        fill="white"
-        textAnchor={x > cx ? "start" : "end"}
-        dominantBaseline="central"
-        fontSize="12px"
-        fontWeight="bold"
-      >
-        {`${(percent * 100).toFixed(1)}%`}
-      </text>
+      <div className="flex flex-wrap justify-center gap-x-6 gap-y-3 mt-4">
+        {payload.map((entry: any, index: number) => (
+          <div key={`item-${index}`} className="flex items-center gap-2">
+            <span
+              className="w-3 h-3 rounded-full shadow-sm"
+              style={{ backgroundColor: entry.color }}
+            />
+            <span className="text-sm font-medium text-muted-foreground">
+              {entry.value}
+            </span>
+            <span className="text-sm font-bold text-foreground">
+              {entry.payload.percent}%
+            </span>
+          </div>
+        ))}
+      </div>
     );
   };
 
@@ -126,7 +144,7 @@ export function ReportsPage() {
       <Sidebar />
 
       <div className="flex-1 flex flex-col overflow-hidden">
-        <Header userName="João Silva" userRole="Administrador" />
+        <Header userName="Carlos Eduardo" userRole="Usuário Premium" />
 
         <main className="flex-1 overflow-y-auto p-6 md:p-8">
           <div className="mb-8">
@@ -166,8 +184,9 @@ export function ReportsPage() {
                   className="w-full px-4 py-3 bg-background border border-border/50 rounded-xl text-sm font-medium text-foreground focus:outline-none focus:ring-2 focus:ring-[#2B5BBA] transition-all"
                 >
                   <option>Todas as contas</option>
-                  <option>Banco do Brasil</option>
-                  <option>Nubank</option>
+                  <option>Conta Corrente Itaú</option>
+                  <option>Poupança Bradesco</option>
+                  <option>Carteira Física</option>
                 </select>
               </div>
 
@@ -183,6 +202,8 @@ export function ReportsPage() {
                   <option>Todas as categorias</option>
                   <option>Moradia</option>
                   <option>Alimentação</option>
+                  <option>Transporte</option>
+                  <option>Lazer</option>
                 </select>
               </div>
 
@@ -213,18 +234,18 @@ export function ReportsPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
             <ReportSummaryCard
               type="income"
-              value={12450.0}
-              percentageChange={13.1}
+              value={7700.0}
+              percentageChange={18.4}
             />
             <ReportSummaryCard
               type="expense"
-              value={8730.0}
-              percentageChange={-5.2}
+              value={3850.0}
+              percentageChange={-21.4}
             />
             <ReportSummaryCard
               type="balance"
-              value={3720.0}
-              percentageChange={21.8}
+              value={3850.0}
+              percentageChange={140.6}
             />
           </div>
 
@@ -238,29 +259,20 @@ export function ReportsPage() {
                   <Pie
                     data={categoryData}
                     cx="50%"
-                    cy="50%"
-                    labelLine={false}
-                    label={renderCustomizedLabel}
-                    outerRadius={110}
-                    innerRadius={60}
-                    paddingAngle={2}
+                    cy="45%"
+                    innerRadius={70}
+                    outerRadius={100}
+                    paddingAngle={4}
                     dataKey="value"
                     nameKey="name"
+                    stroke="none"
                   >
                     {categoryData.map((entry) => (
-                      <Cell key={entry.id} fill={entry.color} />
+                      <Cell key={entry.id} fill={entry.color} stroke="none" />
                     ))}
                   </Pie>
                   <Tooltip content={<CustomTooltip />} />
-                  <Legend
-                    verticalAlign="bottom"
-                    height={36}
-                    wrapperStyle={{
-                      fontSize: "12px",
-                      fontWeight: "500",
-                      fill: "currentColor",
-                    }}
-                  />
+                  <Legend content={<CustomLegend />} verticalAlign="bottom" />
                 </PieChart>
               </ResponsiveContainer>
             </div>

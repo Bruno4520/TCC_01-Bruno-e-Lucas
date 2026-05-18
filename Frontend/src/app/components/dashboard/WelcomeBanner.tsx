@@ -49,27 +49,22 @@ export function WelcomeBanner({
     <div className="bg-card border border-border/50 rounded-3xl p-6 md:p-8 flex flex-col md:flex-row items-center justify-between shadow-sm transition-colors duration-300 relative overflow-hidden">
       <div className="absolute -right-10 -top-10 w-40 h-40 bg-[#2B5BBA]/5 rounded-full blur-2xl pointer-events-none"></div>
 
-      <div className="flex items-center gap-4 mb-6 md:mb-0 relative z-10">
-        <div className="hidden sm:flex w-12 h-12 bg-blue-500/10 rounded-2xl items-center justify-center text-blue-600 dark:text-blue-400">
+      <div className="flex items-center gap-4 relative z-10 w-full">
+        <div className="hidden sm:flex w-12 h-12 bg-blue-500/10 rounded-2xl items-center justify-center text-blue-600 dark:text-blue-400 shrink-0">
           <Sparkles size={24} />
         </div>
-        <div>
-          <h2 className="text-2xl font-bold text-foreground mb-1">
-            {greeting}, {userName}! 👋
-          </h2>
-          <p className="text-muted-foreground text-sm font-medium">
-            Aqui está o resumo das suas finanças de hoje. Continue no controle!
-          </p>
+        <div className="flex-1 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <h2 className="text-2xl font-bold text-foreground mb-1">
+              {greeting}, {userName}! 👋
+            </h2>
+            <p className="text-muted-foreground text-sm font-medium">
+              Aqui está o resumo das suas finanças de hoje. Use as ações rápidas
+              abaixo para adicionar novos registos.
+            </p>
+          </div>
         </div>
       </div>
-
-      <button
-        onClick={onAddTransaction}
-        className="shrink-0 inline-flex items-center gap-2 bg-[#2B5BBA] text-white px-6 py-3 rounded-xl font-medium hover:opacity-90 transition-opacity focus:outline-none focus:ring-2 focus:ring-[#2B5BBA] focus:ring-offset-2 dark:focus:ring-offset-zinc-900 relative z-10"
-      >
-        <Plus size={20} />
-        Nova Movimentação
-      </button>
     </div>
   );
 }

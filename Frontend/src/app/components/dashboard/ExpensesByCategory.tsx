@@ -8,11 +8,11 @@ import {
 } from "recharts";
 
 const data = [
-  { id: "alimentacao", name: "Alimentação", value: 42.5, color: "#3B82F6" },
-  { id: "moradia", name: "Moradia", value: 30.0, color: "#8B5CF6" },
-  { id: "transporte", name: "Transporte", value: 12.5, color: "#10B981" },
-  { id: "lazer", name: "Lazer", value: 10.0, color: "#EF4444" },
-  { id: "outros", name: "Outros", value: 5.0, color: "#64748B" },
+  { id: "moradia", name: "Moradia", value: 53.6, color: "#3B82F6" },
+  { id: "alimentacao", name: "Alimentação", value: 22.5, color: "#10B981" },
+  { id: "compras", name: "Compras Pessoais", value: 10.4, color: "#EC4899" },
+  { id: "transporte", name: "Transporte", value: 7.7, color: "#F59E0B" },
+  { id: "lazer", name: "Lazer", value: 5.8, color: "#8B5CF6" },
 ];
 
 export function ExpensesByCategory() {
@@ -55,7 +55,7 @@ export function ExpensesByCategory() {
             iconType="circle"
             wrapperStyle={{ fontSize: "12px", paddingTop: "20px" }}
             formatter={(value, entry: any) => (
-              <span className="text-foreground ml-1">
+              <span className="text-foreground ml-1 font-medium">
                 {value} - {entry.payload.value}%
               </span>
             )}

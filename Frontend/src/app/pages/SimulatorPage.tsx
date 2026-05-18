@@ -13,11 +13,11 @@ import { TermsCard } from "../components/simulator/TermsCard";
 const CDI_MONTHLY_RATE = 1.0738;
 
 export function SimulatorPage() {
-  const [initialValue, setInitialValue] = useState("0,00");
-  const [monthlyContribution, setMonthlyContribution] = useState("0,00");
-  const [period, setPeriod] = useState("0");
+  const [initialValue, setInitialValue] = useState("2.000,00");
+  const [monthlyContribution, setMonthlyContribution] = useState("500,00");
+  const [period, setPeriod] = useState("36");
   const [rateType, setRateType] = useState("cdi");
-  const [cdiPercentage, setCdiPercentage] = useState(100);
+  const [cdiPercentage, setCdiPercentage] = useState(110);
   const [considerTax, setConsiderTax] = useState(true);
   const [showResults, setShowResults] = useState(false);
   const [results, setResults] = useState({
@@ -85,14 +85,15 @@ export function SimulatorPage() {
     <div className="flex min-h-screen bg-background transition-colors duration-300">
       <Sidebar />
       <div className="flex-1 flex flex-col overflow-hidden">
-        <Header userName="João Silva" userRole="Administrador" />
+        <Header userName="Carlos Eduardo" userRole="Usuário Premium" />
+
         <main className="flex-1 overflow-y-auto p-6 md:p-8">
           <div className="mb-6">
             <h1 className="text-3xl font-bold tracking-tight text-foreground mb-1">
               Simulador de Investimentos
             </h1>
             <p className="text-muted-foreground font-medium">
-              Projete seus investimentos e visualize resultados estimados
+              Projete os seus investimentos e visualize resultados estimados
             </p>
           </div>
 

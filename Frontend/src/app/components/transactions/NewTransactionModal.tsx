@@ -233,6 +233,7 @@ export function NewTransactionModal({
                   type="text"
                   value={valor}
                   onChange={handleValorChange}
+                  onFocus={(e) => e.target.select()}
                   placeholder="0,00"
                   className={`w-full pl-12 pr-4 py-3.5 bg-muted/50 border border-transparent rounded-xl focus:outline-none focus:ring-2 focus:bg-background transition-all font-semibold text-lg text-foreground placeholder:text-muted-foreground/70 ${
                     type === "receita"
