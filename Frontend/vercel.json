@@ -4,5 +4,10 @@
       "source": "/(.*)",
       "destination": "/"
     }
-  ]
+  ],
+  "functions": {
+    "server.ts": {
+      "maxDuration": 30
+    }
+  }
 }
