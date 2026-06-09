@@ -3,6 +3,7 @@ import { Link, useNavigate, useSearchParams } from "react-router";
 import { Lock, Eye, EyeOff, ShieldCheck, ArrowRight } from "lucide-react";
 import { isAxiosError } from "axios";
 import { api } from "../../services/api";
+import { ThemeToggle } from "../components/ui/theme-toggle";
 
 export function ResetPasswordPage() {
   const [newPassword, setNewPassword] = useState("");
@@ -189,6 +190,9 @@ export function ResetPasswordPage() {
             </button>
           </form>
         )}
+      </div>
+      <div className="fixed bottom-4 right-4 z-50">
+        <ThemeToggle />
       </div>
     </div>
   );

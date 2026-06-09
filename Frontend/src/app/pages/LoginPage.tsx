@@ -6,6 +6,7 @@ import { LoginCard, type LoginFormData } from "../components/login/LoginCard";
 import { OnboardingPanel } from "../components/login/OnboardingPanel";
 import { api } from "../../services/api";
 import { useAuth } from "../contexts/AuthContext";
+import { ThemeToggle } from "../components/ui/theme-toggle";
 
 export function LoginPage() {
   const navigate = useNavigate();
@@ -53,6 +54,9 @@ export function LoginPage() {
       <section className="hidden lg:flex w-1/2">
         <OnboardingPanel />
       </section>
+      <div className="fixed bottom-4 right-4 z-50">
+        <ThemeToggle />
+      </div>
     </main>
   );
 }

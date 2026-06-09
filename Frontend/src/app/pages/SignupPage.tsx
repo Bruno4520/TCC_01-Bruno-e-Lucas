@@ -8,6 +8,7 @@ import {
 } from "../components/signup/SignupCard";
 import { SignupPanel } from "../components/signup/SignupPanel";
 import { api } from "../../services/api";
+import { ThemeToggle } from "../components/ui/theme-toggle";
 
 export function SignupPage() {
   const navigate = useNavigate();
@@ -49,6 +50,9 @@ export function SignupPage() {
       <section className="hidden lg:flex w-1/2">
         <SignupPanel />
       </section>
+      <div className="fixed bottom-4 right-4 z-50">
+        <ThemeToggle />
+      </div>
     </main>
   );
 }
