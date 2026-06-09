@@ -4,13 +4,5 @@
       "source": "/(.*)",
       "destination": "/"
     }
-  ],
-  "functions": {
-    "server.ts": {
-      "maxDuration": 30
-    }
-  },
-  "github": {
-    "enabled": true
-  }
+  ]
 } 
