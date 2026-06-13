@@ -8,18 +8,17 @@ export function ForgotPasswordPage() {
   const navigate = useNavigate();
 
   const handleSendLink = async (email: string) => {
+    toast.info("Aguarde um instante...", {
+      description:
+        "Estamos gerando o link de redefinição. Evite clicar várias vezes.",
+      duration: 5000,
+    });
+
     try {
       const response = await api.post("/usuarios/recuperar-senha", { email });
 
-      toast.success("Solicitação enviada!", {
-        description:
-          response.data?.mensagem ||
-          "Se o e-mail existir, enviaremos as instruções de recuperação.",
-        duration: 7000,
-      });
-
       if (response.data?.debugLink) {
-        toast.info("Link de teste gerado em ambiente local.", {
+        toast.success("Link de redefinição gerado!", {
           description: (
             <a
               href={response.data.debugLink}
@@ -28,11 +27,21 @@ export function ForgotPasswordPage() {
               Abrir link de redefinição
             </a>
           ),
-          duration: 10000,
+          duration: 20000,
         });
+
+        return;
       }
+
+      toast.success("Solicitação processada!", {
+        description:
+          response.data?.mensagem ||
+          "Se o e-mail existir, o link de redefinição será disponibilizado.",
+        duration: 7000,
+      });
     } catch (error: any) {
       toast.error("Não foi possível processar a solicitação.");
+      throw error;
     }
   };
 

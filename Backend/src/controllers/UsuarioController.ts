@@ -2,10 +2,6 @@ import { type Request, type Response } from "express";
 import argon2 from "argon2";
 import jwt from "jsonwebtoken";
 import { UsuarioRepository } from "../repositories/UsuarioRepository.js";
-import {
-  buildPasswordResetUrl,
-  sendPasswordResetEmail,
-} from "../services/EmailService.js";
 
 const repository = new UsuarioRepository();
 
@@ -145,20 +141,20 @@ export class UsuarioController {
   }
 
   async recuperarSenha(req: Request, res: Response) {
-    const { email } = req.body;
+    const email = String(req.body.email || "").trim().toLowerCase();
 
     if (!email) {
       return res.status(400).json({ mensagem: "E-mail é obrigatório." });
     }
 
-    const genericMessage =
-      "Se o e-mail existir, você receberá as instruções para redefinir sua senha.";
-
     try {
       const usuario = await repository.buscarPorEmail(email);
 
       if (!usuario) {
-        return res.status(200).json({ mensagem: genericMessage });
+        return res.status(200).json({
+          mensagem:
+            "Se o e-mail existir, o link de redefinição será disponibilizado.",
+        });
       }
 
       const token = jwt.sign(
@@ -167,31 +163,25 @@ export class UsuarioController {
         { expiresIn: "15m" },
       );
 
-      const resetUrl = buildPasswordResetUrl(token);
+      const frontendUrl = (
+        process.env.FRONTEND_URL ||
+        process.env.CORS_ORIGIN ||
+        "http://localhost:5173"
+      )
+        .split(",")[0]
+        .trim()
+        .replace(/\/$/, "");
 
-      const emailResult = await sendPasswordResetEmail(
-        usuario.email,
-        usuario.nome,
-        resetUrl,
-      );
+      const debugLink = `${frontendUrl}/redefinir-senha?token=${encodeURIComponent(
+        token,
+      )}`;
 
-      const response: {
-        mensagem: string;
-        debugLink?: string;
-      } = {
-        mensagem: genericMessage,
-      };
-
-      if (
-        emailResult.skipped &&
-        process.env.RESET_PASSWORD_DEBUG_LINK === "true"
-      ) {
-        response.debugLink = resetUrl;
-      }
-
-      return res.status(200).json(response);
+      return res.status(200).json({
+        mensagem: "Link de redefinição gerado com sucesso.",
+        debugLink,
+      });
     } catch (error) {
-      console.error("[PayGrid] Erro ao processar recuperação de senha:", error);
+      console.error("[PayGrid] Erro ao gerar link de recuperação de senha:", error);
 
       return res.status(500).json({
         mensagem: "Não foi possível processar a solicitação de recuperação.",
